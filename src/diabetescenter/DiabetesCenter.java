@@ -5,6 +5,8 @@
  */
 package diabetescenter;
 
+import view.LoginWindow;
+
 /**
  *
  * @author sachithra sahan
@@ -16,6 +18,9 @@ public class DiabetesCenter {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        LoginWindow loginWindow=new LoginWindow();
+        loginWindow.setLocationRelativeTo(null);
+        loginWindow.setVisible(true);
     }
     
 }
