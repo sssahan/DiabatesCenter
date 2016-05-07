@@ -5,6 +5,12 @@
  */
 package view;
 
+import database.DBOperation;
+import domain.Patient;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author sachithra sahan
@@ -44,7 +50,7 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         txtFirstName = new javax.swing.JTextField();
         txtLastName = new javax.swing.JTextField();
         txtAddress1 = new javax.swing.JTextField();
-        txtNIC = new javax.swing.JTextField();
+        txtAge = new javax.swing.JTextField();
         txtPatientContactNo = new javax.swing.JTextField();
         cmbxGender = new javax.swing.JComboBox();
         txtAddress2 = new javax.swing.JTextField();
@@ -118,10 +124,10 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
 
         txtAddress1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        txtNIC.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtNIC.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtAge.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtAge.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNICKeyTyped(evt);
+                txtAgeKeyTyped(evt);
             }
         });
 
@@ -141,6 +147,11 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
 
         btnAddPatient.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnAddPatient.setText(" Add Patient");
+        btnAddPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddPatientActionPerformed(evt);
+            }
+        });
 
         btnCanel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCanel.setText(" Cancel");
@@ -197,7 +208,7 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmbxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNIC, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -218,7 +229,7 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(txtNIC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -272,24 +283,43 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNICKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNICKeyTyped
-        char c = evt.getKeyChar();
-        if (txtNIC.getText().length()<9 && !Character.isDigit(c)){
+    private void txtAgeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgeKeyTyped
+        /*char c = evt.getKeyChar();
+        if (txtAge.getText().length()<9 && !Character.isDigit(c)){
             evt.consume();
             return;
         }
-        if (txtNIC.getText().length()==9 && !(c=='v' || c=='V' || c=='x' || c=='X')){
+        if (txtAge.getText().length()==9 && !(c=='v' || c=='V' || c=='x' || c=='X')){
             evt.consume();
             return;
         }
-        if (txtNIC.getText().length()==10){
+        if (txtAge.getText().length()==10){
             evt.consume();
-        }
-    }//GEN-LAST:event_txtNICKeyTyped
+        }*/
+    }//GEN-LAST:event_txtAgeKeyTyped
 
     private void txtAddress3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddress3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAddress3ActionPerformed
+
+    private void btnAddPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPatientActionPerformed
+        // TODO add your handling code here:
+        Patient patient=new Patient();
+        DBOperation db=DBOperation.getInstance();
+        patient.setPatientID(1);
+        patient.setFirstName(txtFirstName.getText());
+        patient.setLastName(txtLastName.getText());
+        patient.setGender(String.valueOf(cmbxGender.getSelectedItem()));
+        patient.setAge(Integer.valueOf(txtAge.getText()));
+        patient.setBloodGroup(String.valueOf(cmbxBloodGroup.getSelectedItem()));
+        patient.setAddress(txtAddress1.getText()+ txtAddress2.getText()+txtAddress3.getText());
+        patient.setPhoneNum(txtPatientContactNo.getText());
+        try {
+            db.addPatient(patient);
+        } catch (SQLException ex) {
+            Logger.getLogger(ReceiptionistWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAddPatientActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,9 +377,9 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
     private javax.swing.JTextField txtAddress1;
     private javax.swing.JTextField txtAddress2;
     private javax.swing.JTextField txtAddress3;
+    private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
-    private javax.swing.JTextField txtNIC;
     private javax.swing.JTextField txtPID;
     private javax.swing.JTextField txtPatientContactNo;
     // End of variables declaration//GEN-END:variables

@@ -5,6 +5,19 @@
  */
 package view;
 
+import database.DBOperation;
+import domain.Doctor;
+import domain.Employee;
+import domain.LabTechnician;
+import domain.Manager;
+import domain.MedicalAssistant;
+import domain.Receptionist;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sachithra sahan
@@ -46,7 +59,7 @@ public class ManagerWindow extends javax.swing.JFrame {
         nicText = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         eidText = new javax.swing.JTextField();
@@ -162,8 +175,13 @@ public class ManagerWindow extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton1.setText("Cancel");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton2.setText("Add");
+        addButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -171,7 +189,7 @@ public class ManagerWindow extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(575, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(addButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -187,7 +205,7 @@ public class ManagerWindow extends javax.swing.JFrame {
                 .addContainerGap(276, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(addButton))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -329,6 +347,46 @@ public class ManagerWindow extends javax.swing.JFrame {
        
     }//GEN-LAST:event_eidTextKeyTyped
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // TODO add your handling code here:
+        Employee employee = null;
+        DBOperation db=DBOperation.getInstance();
+        
+        String position=String.valueOf(posComboBox.getSelectedItem());
+        switch (position) {
+            case "Doctor":
+                employee=new Doctor();
+                break;
+            case "Receptionist":
+                employee=new Receptionist();
+                break;
+            case "Medical Assistant":
+                employee=new MedicalAssistant();
+                break;
+            case "Lab Technician":
+                employee=new LabTechnician();
+                break;
+        }
+        //employee.setEmployeeID(1);
+        employee.setName(nameText.getText());
+        employee.setPosition(position);
+        employee.setNIC(nicText.getText());
+        employee.setUsername(unameText.getText());
+        if(Arrays.equals(passText.getPassword(), conPassText.getPassword())){
+            employee.setPassword(new String(passText.getPassword()));
+            try {
+                db.addEmployee(employee);
+            } catch (SQLException ex) {
+                Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        }else{
+            JOptionPane.showMessageDialog(posComboBox, "password invalid..!!");
+            /*passText.setText(null);
+            conPassText.setText(null);*/
+        }
+        
+    }//GEN-LAST:event_addButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -366,10 +424,10 @@ public class ManagerWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton SearchBtn;
+    private javax.swing.JButton addButton;
     private javax.swing.JPasswordField conPassText;
     private javax.swing.JTextField eidText;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

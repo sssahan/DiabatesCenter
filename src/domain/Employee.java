@@ -9,7 +9,7 @@ package domain;
  *
  * @author sachithra sahan
  */
-public class Employee {
+public abstract class Employee {
     private int employeeID;    
     private String position;
     private String name;
