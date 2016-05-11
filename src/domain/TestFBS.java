@@ -15,6 +15,7 @@ public class TestFBS extends Report{
     /**
      * @return the result
      */
+    @Override
     public String getResult() {
         return result;
     }
@@ -22,6 +23,7 @@ public class TestFBS extends Report{
     /**
      * @param result the result to set
      */
+    @Override
     public void setResult(String result) {
         this.result = result;
     }

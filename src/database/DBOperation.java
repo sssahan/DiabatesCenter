@@ -7,6 +7,7 @@ package database;
 
 import domain.Employee;
 import domain.Patient;
+import domain.Report;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -65,7 +66,7 @@ public class DBOperation {
         pst.setString(5, employee.getUsername());
         pst.setString(6, employee.getPassword());
         pst.executeUpdate();
-        con.close();
+        //con.close();
         closeConnection();
     }
     public void addPatient(Patient patient) throws SQLException{
@@ -80,7 +81,20 @@ public class DBOperation {
         pst.setString(7, patient.getAddress());
         pst.setString(8, patient.getPhoneNum());
         pst.executeUpdate();
-        con.close();
+        //con.close();
+        closeConnection();
+    }
+    
+    public void addTestResult(Report report) throws SQLException{
+        setConenction();
+        pst=con.prepareStatement("INSERT INTO Test VALUES(?,?,?,?,?,?)");
+        pst.setInt(1, report.getTestID());
+        pst.setString(2, report.getTestType());
+        pst.setInt(3, report.getPatientID());
+        pst.setString(4, report.getResult());
+        pst.setInt(5, report.getEmployeeID());
+        pst.setDate(6, report.getDate());
+        pst.executeUpdate();
         closeConnection();
     }
 }

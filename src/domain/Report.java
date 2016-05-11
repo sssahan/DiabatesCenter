@@ -12,9 +12,12 @@ import java.sql.Date;
  * @author sachithra sahan
  */
 public abstract class Report {
+    private int testID;
+    private String testType;
     private int patientID;
     private int employeeID;
     private Date date;
+    private String result;
 
     /**
      * @return the patientID
@@ -57,4 +60,47 @@ public abstract class Report {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    /**
+     * @return the result
+     */
+    public String getResult() {
+        return result;
+    }
+
+    /**
+     * @param result the result to set
+     */
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    /**
+     * @return the testID
+     */
+    public int getTestID() {
+        return testID;
+    }
+
+    /**
+     * @param testID the testID to set
+     */
+    public void setTestID(int testID) {
+        this.testID = testID;
+    }
+
+    /**
+     * @return the testType
+     */
+    public String getTestType() {
+        return testType;
+    }
+
+    /**
+     * @param testType the testType to set
+     */
+    public void setTestType(String testType) {
+        this.testType = testType;
+    }
+     
 }
