@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -97,4 +98,25 @@ public class DBOperation {
         pst.executeUpdate();
         closeConnection();
     }
+    public List<Integer> getPatientIDs(){
+        return null;
+        
+    }
+    public List<Integer> getDoctorIDs(){
+        return null;
+        
+    }
+    public List<Integer> getTechnicianIDs(){
+        return null;
+        
+    }
+    public List<Integer> getAssistantIDs(){
+        return null;
+        
+    }
+    public List<Integer> getRepIDs(){
+        return null;
+        
+    }
+    
 }
