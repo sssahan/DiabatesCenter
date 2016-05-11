@@ -5,33 +5,16 @@
  */
 package domain;
 
-import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
  * @author sachithra sahan
  */
-public class Treatment {
-    //still have to create variables for medicines
+public class Medicine {
     private int treatmentID;
     private int patientID;
-    private int employeeID;
-    private String details;
-    private Date date;
-
-    /**
-     * @return the details
-     */
-    public String getDetails() {
-        return details;
-    }
-
-    /**
-     * @param details the details to set
-     */
-    public void setDetails(String details) {
-        this.details = details;
-    }
+    private ArrayList<String> madicineType,dosage;
 
     /**
      * @return the treatmentID
@@ -62,30 +45,32 @@ public class Treatment {
     }
 
     /**
-     * @return the employeeID
+     * @return the madicineType
      */
-    public int getEmployeeID() {
-        return employeeID;
+    public ArrayList<String> getMadicineType() {
+        return madicineType;
     }
 
     /**
-     * @param employeeID the employeeID to set
+     * @param madicineType the madicineType to set
      */
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public void setMadicineType(ArrayList<String> madicineType) {
+        this.madicineType = madicineType;
     }
 
     /**
-     * @return the date
+     * @return the dosage
      */
-    public Date getDate() {
-        return date;
+    public ArrayList<String> getDosage() {
+        return dosage;
     }
 
     /**
-     * @param date the date to set
+     * @param dosage the dosage to set
      */
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDosage(ArrayList<String> dosage) {
+        this.dosage = dosage;
     }
+    
+    
 }
