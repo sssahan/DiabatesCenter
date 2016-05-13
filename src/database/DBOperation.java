@@ -23,7 +23,7 @@ public class DBOperation {
     private static DBOperation  dbo=null;
     private Connection con = null;
     private PreparedStatement pst = null;
-    private ResultSet use = null;
+    private ResultSet resultSet = null;
     private final String url = "jdbc:mysql://localhost:3306/diabetes_center";
     private final String user = "root";
     private final String password = "sahan";
@@ -54,7 +54,7 @@ public class DBOperation {
         try{
             con.close();
             pst.close();
-            use.close();
+            resultSet.close();
         }catch(NullPointerException ex){}
     }
     public void addEmployee(Employee employee) throws SQLException{
@@ -102,21 +102,35 @@ public class DBOperation {
         return null;
         
     }
-    public List<Integer> getDoctorIDs(){
-        return null;
+    public boolean isValidPatient(int pid) throws SQLException{
+        int id;
+        setConenction();
+        pst=con.prepareStatement("SELECT PID FROM Patient");
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            id = resultSet.getInt(1);
+            if(id==pid){
+                return true;
+            }
+        }
+        closeConnection();
+        return false;
         
     }
-    public List<Integer> getTechnicianIDs(){
-        return null;
-        
-    }
-    public List<Integer> getAssistantIDs(){
-        return null;
-        
-    }
-    public List<Integer> getRepIDs(){
-        return null;
-        
+    public boolean isValidEmployeee(int eid) throws SQLException{
+        int id;
+        setConenction();
+        pst=con.prepareStatement("SELECT EID FROM Employee");
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            id = resultSet.getInt(1);
+            if(id==eid){
+                return true;
+            }
+        }
+        closeConnection();
+        return false;
+
     }
     
 }
