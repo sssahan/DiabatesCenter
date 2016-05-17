@@ -5,6 +5,16 @@
  */
 package view;
 
+import database.DBOperation;
+import domain.Doctor;
+import domain.LabTechnician;
+import domain.MedicalAssistant;
+import domain.Receptionist;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sachithra sahan
@@ -34,9 +44,9 @@ public class LoginWindow extends javax.swing.JFrame {
         txtPassword = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        loginButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        settingButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -65,27 +75,27 @@ public class LoginWindow extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Password   :");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        loginButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                loginButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton2.setText("Cancel");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        cancelButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                cancelButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton3.setText("Settings");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        settingButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        settingButton.setText("Settings");
+        settingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                settingButtonActionPerformed(evt);
             }
         });
 
@@ -108,11 +118,11 @@ public class LoginWindow extends javax.swing.JFrame {
                                 .addComponent(txtPassword))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton3)
+                        .addComponent(settingButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(loginButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(cancelButton)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -128,9 +138,9 @@ public class LoginWindow extends javax.swing.JFrame {
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(loginButton)
+                    .addComponent(cancelButton)
+                    .addComponent(settingButton))
                 .addContainerGap())
         );
 
@@ -153,20 +163,63 @@ public class LoginWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        txtPassword.setText(null);
+        txtUser.setText(null);
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void settingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingButtonActionPerformed
         // TODO add your handling code here:
         SettingsWindow settingsWindow=new SettingsWindow();
         settingsWindow.setLocationRelativeTo(null);
         settingsWindow.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_settingButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String user,pwd;
+        DBOperation db=DBOperation.getInstance();
+        user=String.valueOf(txtUser.getText());
+        pwd=String.valueOf(txtPassword.getText());
+        try {
+            if(db.isValidEmployee(user, pwd)){
+                //display ideal window to employee
+                String position=db.getPosition(user, pwd);
+                switch (position) {
+                    case "Doctor":
+                        DoctorWindow dw=new DoctorWindow();
+                        dw.setLocationRelativeTo(null);
+                        dw.setVisible(true);
+                        this.dispose();
+                        break;
+                    case "Receptionist":
+                        ReceiptionistWindow rw=new ReceiptionistWindow();
+                        rw.setLocationRelativeTo(null);
+                        rw.setVisible(true);
+                        this.dispose();
+                        break;
+                    case "Medical Assistant":
+                        AssistantWindow aw=new AssistantWindow();
+                        aw.setLocationRelativeTo(null);
+                        aw.setVisible(true);
+                        break;
+                    case "Lab Technician":
+                        TechnicianWindow tw=new TechnicianWindow();
+                        tw.setLocationRelativeTo(null);
+                        tw.setVisible(true);
+                        break;
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Invalid login..!!");
+                txtPassword.setText(null);
+                txtUser.setText(null);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,14 +258,14 @@ public class LoginWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton loginButton;
+    private javax.swing.JButton settingButton;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables

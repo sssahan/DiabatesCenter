@@ -117,20 +117,36 @@ public class DBOperation {
         return false;
         
     }
-    public boolean isValidEmployeee(int eid) throws SQLException{
-        int id;
+    public boolean isValidEmployee(String user, String pwd) throws SQLException{
+        String username,passwordE;
         setConenction();
-        pst=con.prepareStatement("SELECT EID FROM Employee");
+        pst=con.prepareStatement("SELECT username,password FROM Employee");
         resultSet=pst.executeQuery();
         while(resultSet.next()){
-            id = resultSet.getInt(1);
-            if(id==eid){
+            username=resultSet.getString(1);
+            passwordE=resultSet.getString(2);
+            if(username.equals(user) && passwordE.equals(pwd)){
                 return true;
             }
         }
         closeConnection();
         return false;
 
+    }
+    public String getPosition(String user, String pwd) throws SQLException{
+        String position;
+        setConenction();
+        pst=con.prepareStatement("SELECT position FROM Employee WHERE username=? AND password=?");
+        
+        pst.setString(1, user);
+        pst.setString(2, pwd);
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            position=resultSet.getString(1);
+            return position;
+        }
+        return null;
+        
     }
     
 }
