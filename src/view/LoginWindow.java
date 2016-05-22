@@ -26,6 +26,7 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     public LoginWindow() {
         initComponents();
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     /**
@@ -41,12 +42,12 @@ public class LoginWindow extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
         loginButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         settingButton = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -181,31 +182,34 @@ public class LoginWindow extends javax.swing.JFrame {
         String user,pwd;
         DBOperation db=DBOperation.getInstance();
         user=String.valueOf(txtUser.getText());
-        pwd=String.valueOf(txtPassword.getText());
+        pwd=String.valueOf(txtPassword.getPassword());
         try {
-            if(db.isValidEmployee(user, pwd)){
+            if(db.isAdmin(user, pwd)){
+                ManagerWindow mw=new  ManagerWindow();
+                mw.setLocationRelativeTo(null);
+                mw.setVisible(true);
+            }else if(db.isValidEmployee(user, pwd)){
                 //display ideal window to employee
                 String position=db.getPosition(user, pwd);
+                int eid=db.getEmployeeID(user, pwd);
                 switch (position) {
                     case "Doctor":
                         DoctorWindow dw=new DoctorWindow();
                         dw.setLocationRelativeTo(null);
                         dw.setVisible(true);
-                        this.dispose();
                         break;
                     case "Receptionist":
                         ReceiptionistWindow rw=new ReceiptionistWindow();
                         rw.setLocationRelativeTo(null);
                         rw.setVisible(true);
-                        this.dispose();
                         break;
                     case "Medical Assistant":
-                        AssistantWindow aw=new AssistantWindow();
+                        AssistantWindow aw=new AssistantWindow(eid);
                         aw.setLocationRelativeTo(null);
                         aw.setVisible(true);
                         break;
                     case "Lab Technician":
-                        TechnicianWindow tw=new TechnicianWindow();
+                        TechnicianWindow tw=new TechnicianWindow(eid);
                         tw.setLocationRelativeTo(null);
                         tw.setVisible(true);
                         break;
@@ -266,7 +270,7 @@ public class LoginWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton loginButton;
     private javax.swing.JButton settingButton;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

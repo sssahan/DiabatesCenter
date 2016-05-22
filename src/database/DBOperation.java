@@ -8,6 +8,7 @@ package database;
 import domain.Employee;
 import domain.Patient;
 import domain.Report;
+import domain.Treatment;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -98,10 +99,19 @@ public class DBOperation {
         pst.executeUpdate();
         closeConnection();
     }
-    public List<Integer> getPatientIDs(){
-        return null;
-        
+    
+    public void addTreatment(Treatment treatment) throws SQLException{
+        setConenction();
+        pst=con.prepareStatement("INSERT INTO Treatment VALUES(?,?,?,?,?)");
+        pst.setInt(1, treatment.getTreatmentID());
+        pst.setInt(2, treatment.getPatientID());
+        pst.setInt(3, treatment.getEmployeeID());
+        pst.setString(4, treatment.getDetails());
+        pst.setDate(5, treatment.getDate());
+        pst.executeUpdate();
+        closeConnection();
     }
+    
     public boolean isValidPatient(int pid) throws SQLException{
         int id;
         setConenction();
@@ -133,6 +143,25 @@ public class DBOperation {
         return false;
 
     }
+    
+    public boolean isAdmin(String user, String pwd){
+         try {
+            setConenction();
+            pst = con.prepareStatement("SELECT * FROM Employee WHERE EID = 1 AND username = ? AND password = ?");   
+            pst.setString(1,user);
+            pst.setString(2,pwd);
+            resultSet = pst.executeQuery();
+
+            if(resultSet.next()){                   
+                return true;        
+            }             
+            closeConnection();
+            
+        } catch (SQLException ex) {
+            return false;
+        }
+        return false;
+    }
     public String getPosition(String user, String pwd) throws SQLException{
         String position;
         setConenction();
@@ -149,4 +178,62 @@ public class DBOperation {
         
     }
     
+    public int getEmployeeID(String user,String pwd) throws SQLException{
+        int eid=0;
+        setConenction();
+        pst=con.prepareStatement("SELECT EID FROM Employee WHERE username=? AND password=?");
+        pst.setString(1, user);
+        pst.setString(2, pwd);
+        resultSet=pst.executeQuery();
+        if(resultSet.next()){
+            eid=resultSet.getInt(1);
+            return eid;
+        }
+        
+        return eid;
+    }
+    
+    public int getLastPID() throws SQLException{
+        int lastPID=0;
+        setConenction();
+        pst=con.prepareStatement("SELECT MAX(PID) FROM Patient");
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            lastPID=resultSet.getInt(1);
+        }
+        return lastPID;
+    }
+    
+    public int getLastEID() throws SQLException{
+        int lastEID=0;
+        setConenction();
+        pst=con.prepareStatement("SELECT MAX(EID) FROM Employee");
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            lastEID=resultSet.getInt(1);
+        }
+        return lastEID;
+    }
+    
+    public int getLastTestID() throws SQLException{
+        int lastID=0;
+        setConenction();
+        pst=con.prepareStatement("SELECT MAX(test_id) FROM Test");
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            lastID=resultSet.getInt(1);
+        }
+        return lastID;
+    }
+    
+    public int getLastTreatmentID() throws SQLException{
+        int lastID=0;
+        setConenction();
+        pst=con.prepareStatement("SELECT MAX(treatment_id) FROM Treatment");
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            lastID=resultSet.getInt(1);
+        }
+        return lastID;
+    }
 }

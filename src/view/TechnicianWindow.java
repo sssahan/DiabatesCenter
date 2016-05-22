@@ -15,6 +15,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,8 +26,10 @@ public class TechnicianWindow extends javax.swing.JFrame {
     /**
      * Creates new form LoginWindow
      */
-    public TechnicianWindow() {
+    public TechnicianWindow(int eid) {
         initComponents();
+        tecIDtext.setText(String.valueOf(eid));
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -93,6 +96,8 @@ public class TechnicianWindow extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Result :");
+
+        tecIDtext.setEditable(false);
 
         testComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "HBA1C", "FBS", "Random " }));
 
@@ -224,18 +229,25 @@ public class TechnicianWindow extends javax.swing.JFrame {
                 break;
         }
         if(testReport!=null){
-            //testReport.setTestID(1);
-            testReport.setEmployeeID(Integer.valueOf(tecIDtext.getText()));//have to chech eid in database
-            testReport.setPatientID(Integer.valueOf(PIDtext.getText()));//have to check pid in database
-            testReport.setResult(resultText.getText());
-            Date testDate=Help.getDate(Integer.valueOf(yearText.getText()), Integer.valueOf(monthText.getText()), Integer.valueOf(dayText.getText()));
-            testReport.setDate(testDate);
-            testReport.setTestType(test);
-        }
-        try {
-            db.addTestResult(testReport);
-        } catch (SQLException ex) {
-            Logger.getLogger(TechnicianWindow.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                int pid=Integer.valueOf(PIDtext.getText());
+                testReport.setTestID(db.getLastTestID()+1);
+                testReport.setEmployeeID(Integer.valueOf(tecIDtext.getText()));//have to chech eid in database
+                if(db.isValidPatient(pid)){
+                    testReport.setPatientID(pid);//have to check pid in database
+                    testReport.setResult(resultText.getText());
+                    Date testDate=Help.getDate(Integer.valueOf(yearText.getText()), Integer.valueOf(monthText.getText()), Integer.valueOf(dayText.getText()));
+                    testReport.setDate(testDate);
+                    testReport.setTestType(test);
+                    db.addTestResult(testReport);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Invalid patient...!!!");
+                }
+                
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(TechnicianWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         
@@ -274,7 +286,7 @@ public class TechnicianWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TechnicianWindow().setVisible(true);
+                new TechnicianWindow(100).setVisible(true);
             }
         });
     }

@@ -5,10 +5,14 @@
  */
 package view;
 
+import database.DBOperation;
 import database.Help;
 import domain.Medicine;
 import domain.Treatment;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,8 +23,11 @@ public class AssistantWindow extends javax.swing.JFrame {
     /**
      * Creates new form AssistantWindow
      */
-    public AssistantWindow() {
+    int lastTreatmentID=0;
+    public AssistantWindow(int eid) {
         initComponents();
+        assistantIDtxt.setText(String.valueOf(eid));
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -59,6 +66,8 @@ public class AssistantWindow extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Assistant ID :");
+
+        assistantIDtxt.setEditable(false);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Patient ID :");
@@ -228,19 +237,27 @@ public class AssistantWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
-        Treatment treatment=new Treatment();
-        Medicine medicine=new Medicine();
-        
-        treatment.setTreatmentID(1);
-        treatment.setEmployeeID(Integer.valueOf(assistantIDtxt.getText()));
-        treatment.setPatientID(Integer.valueOf(textPID.getText()));
-        treatment.setDetails(detailsTxt.getText());
-        Date testDate=Help.getDate(Integer.valueOf(yearText.getText()), Integer.valueOf(monthText.getText()), Integer.valueOf(dayText.getText()));
-        treatment.setDate(testDate);
-        
-        medicine.setTreatmentID(1);
-        medicine.setPatientID(Integer.valueOf(textPID.getText()));//have to implement medicine type and dosage
+        try {
+            // TODO add your handling code here:
+            Treatment treatment=new Treatment();
+            Medicine medicine=new Medicine();
+            DBOperation db=DBOperation.getInstance();
+            lastTreatmentID=db.getLastTreatmentID();
+            
+            
+            treatment.setTreatmentID(lastTreatmentID+1);
+            treatment.setEmployeeID(Integer.valueOf(assistantIDtxt.getText()));
+            treatment.setPatientID(Integer.valueOf(textPID.getText()));
+            treatment.setDetails(detailsTxt.getText());
+            Date testDate=Help.getDate(Integer.valueOf(yearText.getText()), Integer.valueOf(monthText.getText()), Integer.valueOf(dayText.getText()));
+            treatment.setDate(testDate);
+            db.addTreatment(treatment);
+            
+            medicine.setTreatmentID(lastTreatmentID+1);
+            medicine.setPatientID(Integer.valueOf(textPID.getText()));//have to implement medicine type and dosage
+        } catch (SQLException ex) {
+            Logger.getLogger(AssistantWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
@@ -273,7 +290,7 @@ public class AssistantWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AssistantWindow().setVisible(true);
+                new AssistantWindow(15).setVisible(true);
             }
         });
     }

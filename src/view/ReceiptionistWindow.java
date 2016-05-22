@@ -20,8 +20,17 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
     /**
      * Creates new form ReceiptionistWindow
      */
+    int lastPID=0;
     public ReceiptionistWindow() {
-        initComponents();
+        try {
+            initComponents();
+            DBOperation db=DBOperation.getInstance();
+            lastPID=db.getLastPID();
+            txtPID.setText(String.valueOf(lastPID+1));
+        } catch (SQLException ex) {
+            Logger.getLogger(ReceiptionistWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -306,7 +315,8 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         Patient patient=new Patient();
         DBOperation db=DBOperation.getInstance();
-        patient.setPatientID(1);
+        
+        patient.setPatientID(lastPID+1);
         patient.setFirstName(txtFirstName.getText());
         patient.setLastName(txtLastName.getText());
         patient.setGender(String.valueOf(cmbxGender.getSelectedItem()));

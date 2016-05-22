@@ -5,6 +5,12 @@
  */
 package view;
 
+import database.DBOperation;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sachithra sahan
@@ -14,8 +20,11 @@ public class DoctorWindow extends javax.swing.JFrame {
     /**
      * Creates new form DoctorWindow
      */
+    DBOperation db;
     public DoctorWindow() {
         initComponents();
+        db = DBOperation.getInstance();
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -31,11 +40,11 @@ public class DoctorWindow extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        textPID = new javax.swing.JTextField();
+        btnTreatment = new javax.swing.JButton();
+        btnHBA1C = new javax.swing.JButton();
+        btnFBS = new javax.swing.JButton();
+        btnRandom = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -61,35 +70,35 @@ public class DoctorWindow extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Patient ID :");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton1.setText("View previous treatments");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnTreatment.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnTreatment.setText("View previous treatments");
+        btnTreatment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnTreatmentActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton2.setText("View HBA1C prograss");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnHBA1C.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnHBA1C.setText("View HBA1C prograss");
+        btnHBA1C.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnHBA1CActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton3.setText("View FBS prograss");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnFBS.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnFBS.setText("View FBS prograss");
+        btnFBS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnFBSActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton4.setText("View Random sugar prograss");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnRandom.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnRandom.setText("View Random sugar prograss");
+        btnRandom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnRandomActionPerformed(evt);
             }
         });
 
@@ -103,20 +112,20 @@ public class DoctorWindow extends javax.swing.JFrame {
                         .addGap(138, 138, 138)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(textPID, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(125, 125, 125)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
+                            .addComponent(btnTreatment)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(btnFBS, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnHBA1C, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(btnRandom)
                 .addGap(94, 94, 94))
         );
         jPanel2Layout.setVerticalGroup(
@@ -125,15 +134,15 @@ public class DoctorWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textPID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
-                .addComponent(jButton1)
+                .addComponent(btnTreatment)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(btnHBA1C)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(btnFBS)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(btnRandom)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -155,21 +164,73 @@ public class DoctorWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnTreatmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTreatmentActionPerformed
+        try {
+            // TODO add your handling code here:
+            if(db.isValidPatient(Integer.valueOf(textPID.getText()))){
+                
+            }else{
+                JOptionPane.showMessageDialog(this, "Invalid patient...!!!");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Incorrect format");
+            textPID.setText(null);
+            //Logger.getLogger(DoctorWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (SQLException ex) {
+            Logger.getLogger(DoctorWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnTreatmentActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnHBA1CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHBA1CActionPerformed
+        try {
+            // TODO add your handling code here:
+            if(db.isValidPatient(Integer.valueOf(textPID.getText()))){
+                
+            }else{
+                JOptionPane.showMessageDialog(this, "Invalid patient...!!!");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Incorrect format");
+            textPID.setText(null);
+            //Logger.getLogger(DoctorWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (SQLException ex) {
+            Logger.getLogger(DoctorWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnHBA1CActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnFBSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFBSActionPerformed
+        try {
+            // TODO add your handling code here:
+            if(db.isValidPatient(Integer.valueOf(textPID.getText()))){
+                
+            }else{
+                JOptionPane.showMessageDialog(this, "Invalid patient...!!!");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Incorrect format");
+            textPID.setText(null);
+            //Logger.getLogger(DoctorWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (SQLException ex) {
+            Logger.getLogger(DoctorWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnFBSActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnRandomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRandomActionPerformed
+        try {
+            // TODO add your handling code here:
+            if(db.isValidPatient(Integer.valueOf(textPID.getText()))){
+                
+            }else{
+                JOptionPane.showMessageDialog(this, "Invalid patient...!!!");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Incorrect format");
+            textPID.setText(null);
+            //Logger.getLogger(DoctorWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (SQLException ex) {
+            Logger.getLogger(DoctorWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnRandomActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,14 +268,14 @@ public class DoctorWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnFBS;
+    private javax.swing.JButton btnHBA1C;
+    private javax.swing.JButton btnRandom;
+    private javax.swing.JButton btnTreatment;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField textPID;
     // End of variables declaration//GEN-END:variables
 }
