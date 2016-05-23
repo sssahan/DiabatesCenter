@@ -6,6 +6,7 @@
 package database;
 
 import domain.Employee;
+import domain.Medicine;
 import domain.Patient;
 import domain.Report;
 import domain.Treatment;
@@ -14,6 +15,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -83,7 +85,6 @@ public class DBOperation {
         pst.setString(7, patient.getAddress());
         pst.setString(8, patient.getPhoneNum());
         pst.executeUpdate();
-        //con.close();
         closeConnection();
     }
     
@@ -109,6 +110,20 @@ public class DBOperation {
         pst.setString(4, treatment.getDetails());
         pst.setDate(5, treatment.getDate());
         pst.executeUpdate();
+        closeConnection();
+    }
+    
+    public void addMedicineReport(Medicine medicine) throws SQLException{
+        setConenction();
+        for (int i = 0; i < medicine.getDosage().size(); i++) {
+            pst=con.prepareStatement("INSERT INTO Medicine VALUES(?,?,?,?)");
+            pst.setInt(1, medicine.getTreatmentID());
+            pst.setInt(2, medicine.getPatientID());
+            pst.setString(3, medicine.getMadicineType().get(i));
+            pst.setString(4, medicine.getDosage().get(i));
+            pst.executeUpdate();
+        }
+        
         closeConnection();
     }
     
@@ -235,5 +250,33 @@ public class DBOperation {
             lastID=resultSet.getInt(1);
         }
         return lastID;
+    }
+    
+    public ArrayList<String> getResultList(String pid,String test) throws SQLException{
+        ArrayList<String> resultList=new ArrayList();
+        setConenction();
+        pst=con.prepareStatement("SELECT result FROM Test WHERE PID=? AND test_type=?");
+        pst.setString(1, pid);
+        pst.setString(2, test);
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            resultList.add(resultSet.getString(1));
+        }
+        closeConnection();
+        return resultList;
+    }
+    
+    public ArrayList<String> getDateList(String pid,String test) throws SQLException{
+        ArrayList<String> dateList=new ArrayList();
+        setConenction();
+        pst=con.prepareStatement("SELECT date FROM Test WHERE PID=? AND test_type=?");
+        pst.setString(1, pid);
+        pst.setString(2, test);
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            dateList.add(resultSet.getString(1));
+        }
+        closeConnection();
+        return dateList;
     }
 }

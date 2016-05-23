@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public class Medicine {
     private int treatmentID;
     private int patientID;
-    private ArrayList<String> madicineType,dosage;
+    private ArrayList<String> madicineType=new ArrayList();
+    private ArrayList<String> dosage= new ArrayList();
 
     /**
      * @return the treatmentID
@@ -70,6 +71,14 @@ public class Medicine {
      */
     public void setDosage(ArrayList<String> dosage) {
         this.dosage = dosage;
+    }
+    
+    public void addMedicine(String data){
+        this.madicineType.add(data);
+    }
+    
+    public void addDosage(String data){
+        this.dosage.add(data);
     }
     
     

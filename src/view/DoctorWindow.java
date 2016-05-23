@@ -6,7 +6,9 @@
 package view;
 
 import database.DBOperation;
+import graph.GraphCreater;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,9 +23,12 @@ public class DoctorWindow extends javax.swing.JFrame {
      * Creates new form DoctorWindow
      */
     DBOperation db;
+    ArrayList<String> resultList,dateList;
     public DoctorWindow() {
         initComponents();
         db = DBOperation.getInstance();
+        resultList=new ArrayList();
+        dateList=new ArrayList();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -185,7 +190,9 @@ public class DoctorWindow extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             if(db.isValidPatient(Integer.valueOf(textPID.getText()))){
-                
+                resultList=db.getResultList(textPID.getText(), "HBA1C");
+                dateList=db.getDateList(textPID.getText(), "HBA1C");
+                GraphCreater.createGraph(resultList, dateList,"HBA1C");
             }else{
                 JOptionPane.showMessageDialog(this, "Invalid patient...!!!");
             }
@@ -202,7 +209,9 @@ public class DoctorWindow extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             if(db.isValidPatient(Integer.valueOf(textPID.getText()))){
-                
+                resultList=db.getResultList(textPID.getText(), "FBS");
+                dateList=db.getDateList(textPID.getText(), "FBS");
+                GraphCreater.createGraph(resultList, dateList,"FBS");
             }else{
                 JOptionPane.showMessageDialog(this, "Invalid patient...!!!");
             }
@@ -219,7 +228,9 @@ public class DoctorWindow extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             if(db.isValidPatient(Integer.valueOf(textPID.getText()))){
-                
+                resultList=db.getResultList(textPID.getText(), "Random");
+                dateList=db.getDateList(textPID.getText(), "Random");
+                GraphCreater.createGraph(resultList, dateList,"Random");
             }else{
                 JOptionPane.showMessageDialog(this, "Invalid patient...!!!");
             }

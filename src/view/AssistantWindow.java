@@ -13,6 +13,11 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +28,7 @@ public class AssistantWindow extends javax.swing.JFrame {
     /**
      * Creates new form AssistantWindow
      */
+    private DefaultCellEditor cellEditor;
     int lastTreatmentID=0;
     public AssistantWindow(int eid) {
         initComponents();
@@ -87,6 +93,12 @@ public class AssistantWindow extends javax.swing.JFrame {
                 "Medicine", "Dosage"
             }
         ));
+        medicineTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        medicineTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                medicineTableKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(medicineTable);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -126,6 +138,18 @@ public class AssistantWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 5, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(saveButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,19 +173,7 @@ public class AssistantWindow extends javax.swing.JFrame {
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addComponent(dayText, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 5, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(saveButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -239,6 +251,7 @@ public class AssistantWindow extends javax.swing.JFrame {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         try {
             // TODO add your handling code here:
+            String med,dosage;
             Treatment treatment=new Treatment();
             Medicine medicine=new Medicine();
             DBOperation db=DBOperation.getInstance();
@@ -255,10 +268,35 @@ public class AssistantWindow extends javax.swing.JFrame {
             
             medicine.setTreatmentID(lastTreatmentID+1);
             medicine.setPatientID(Integer.valueOf(textPID.getText()));//have to implement medicine type and dosage
+            
+            for (int i = 0; i < medicineTable.getRowCount(); i++) {
+                med=String.valueOf(medicineTable.getValueAt(i, 0));
+                dosage=String.valueOf(medicineTable.getValueAt(i, 1));
+                
+                medicine.addMedicine(med);
+                System.out.println(med);
+                medicine.addDosage(dosage);
+                System.out.println(dosage);
+                
+                
+            }
+            db.addMedicineReport(medicine);
+            
         } catch (SQLException ex) {
             Logger.getLogger(AssistantWindow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Enter data to all the fields");
         }
     }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void medicineTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_medicineTableKeyReleased
+        // TODO add your handling code here:
+        int num=evt.getKeyCode();
+        if((num==110 || evt.isActionKey()|| num==10)){
+            cellEditor=(DefaultCellEditor)medicineTable.getCellEditor(medicineTable.getSelectedRow(),medicineTable.getSelectedColumn());
+            ((JTextField)cellEditor.getComponent()).setText(null);
+        }
+    }//GEN-LAST:event_medicineTableKeyReleased
 
     /**
      * @param args the command line arguments
