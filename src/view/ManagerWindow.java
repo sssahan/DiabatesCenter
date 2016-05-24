@@ -374,7 +374,12 @@ public class ManagerWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         Employee employee = null;
         DBOperation db=DBOperation.getInstance();
-        
+        try {
+            lastEID=db.getLastEID();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        idText.setText(String.valueOf(lastEID+1));
         String position=String.valueOf(posComboBox.getSelectedItem());
         switch (position) {
             case "Doctor":
@@ -390,23 +395,33 @@ public class ManagerWindow extends javax.swing.JFrame {
                 employee=new LabTechnician();
                 break;
         }
-        employee.setEmployeeID(lastEID+1);
-        employee.setName(nameText.getText());
-        employee.setPosition(position);
-        employee.setNIC(nicText.getText());
-        employee.setUsername(unameText.getText());
-        if(Arrays.equals(passText.getPassword(), conPassText.getPassword())){
-            employee.setPassword(new String(passText.getPassword()));
-            try {
-                db.addEmployee(employee);
-            } catch (SQLException ex) {
-                Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-        }else{
-            JOptionPane.showMessageDialog(posComboBox, "password invalid..!!");
-            /*passText.setText(null);
-            conPassText.setText(null);*/
+        if(employee!=null){
+            employee.setEmployeeID(lastEID+1);
+            employee.setName(nameText.getText());
+            employee.setPosition(position);
+            employee.setNIC(nicText.getText());
+            employee.setUsername(unameText.getText());
+            if(Arrays.equals(passText.getPassword(), conPassText.getPassword())){
+                employee.setPassword(new String(passText.getPassword()));
+                try {
+                    db.addEmployee(employee);
+                    lastEID=db.getLastEID();
+                    idText.setText(String.valueOf(lastEID+1));
+                    nameText.setText(null);
+                    nicText.setText(null);
+                    unameText.setText(null);
+                    passText.setText(null);
+                    conPassText.setText(null);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+            }else{
+                JOptionPane.showMessageDialog(posComboBox, "password invalid..!!");
+                /*passText.setText(null);
+                conPassText.setText(null);*/
+            }
         }
+        
         
     }//GEN-LAST:event_addButtonActionPerformed
 

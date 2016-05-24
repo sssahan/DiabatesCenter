@@ -10,6 +10,7 @@ import domain.Patient;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -125,6 +126,7 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
 
         txtPID.setEditable(false);
         txtPID.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtPID.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         txtPID.setEnabled(false);
 
         txtFirstName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -315,20 +317,35 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         Patient patient=new Patient();
         DBOperation db=DBOperation.getInstance();
-        
-        patient.setPatientID(lastPID+1);
-        patient.setFirstName(txtFirstName.getText());
-        patient.setLastName(txtLastName.getText());
-        patient.setGender(String.valueOf(cmbxGender.getSelectedItem()));
-        patient.setAge(Integer.valueOf(txtAge.getText()));
-        patient.setBloodGroup(String.valueOf(cmbxBloodGroup.getSelectedItem()));
-        patient.setAddress(txtAddress1.getText()+ txtAddress2.getText()+txtAddress3.getText());
-        patient.setPhoneNum(txtPatientContactNo.getText());
         try {
+            lastPID=db.getLastPID();
+            txtPID.setText(String.valueOf(lastPID+1));
+            patient.setPatientID(lastPID+1);
+            patient.setFirstName(txtFirstName.getText());
+            patient.setLastName(txtLastName.getText());
+            patient.setGender(String.valueOf(cmbxGender.getSelectedItem()));
+            patient.setAge(Integer.valueOf(txtAge.getText()));
+            patient.setBloodGroup(String.valueOf(cmbxBloodGroup.getSelectedItem()));
+            patient.setAddress(txtAddress1.getText()+ txtAddress2.getText()+txtAddress3.getText());
+            patient.setPhoneNum(txtPatientContactNo.getText());
+            
             db.addPatient(patient);
+            lastPID=db.getLastPID();
+            txtPID.setText(String.valueOf(lastPID+1));
+            txtFirstName.setText(null);
+            txtLastName.setText(null);
+            txtAge.setText(null);
+            txtAddress1.setText(null);
+            txtAddress2.setText(null);
+            txtAddress3.setText(null);
+            txtPatientContactNo.setText(null);
         } catch (SQLException ex) {
             Logger.getLogger(ReceiptionistWindow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "Fill all the fields");
         }
+        
+        
     }//GEN-LAST:event_btnAddPatientActionPerformed
 
     /**

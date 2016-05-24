@@ -5,15 +5,14 @@
  */
 package graph;
 
-import database.DBOperation;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -22,7 +21,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author sachithra sahan
  */
-public class GraphCreater extends ApplicationFrame{
+public class GraphCreater extends JFrame{
     public GraphCreater( String applicationTitle , String chartTitle,ArrayList<String> resultList,ArrayList<String> dateList){
         super(applicationTitle);
         JFreeChart lineChart = ChartFactory.createLineChart(

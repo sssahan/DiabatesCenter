@@ -234,20 +234,33 @@ public class TechnicianWindow extends javax.swing.JFrame {
                 testReport.setTestID(db.getLastTestID()+1);
                 testReport.setEmployeeID(Integer.valueOf(tecIDtext.getText()));//have to chech eid in database
                 if(db.isValidPatient(pid)){
-                    testReport.setPatientID(pid);//have to check pid in database
-                    testReport.setResult(resultText.getText());
-                    Date testDate=Help.getDate(Integer.valueOf(yearText.getText()), Integer.valueOf(monthText.getText()), Integer.valueOf(dayText.getText()));
-                    testReport.setDate(testDate);
-                    testReport.setTestType(test);
-                    db.addTestResult(testReport);
+                    if(!(resultText.getText().isEmpty())){
+                        testReport.setPatientID(pid);//have to check pid in database
+                        testReport.setResult(resultText.getText());
+                        Date testDate=Help.getDate(Integer.valueOf(yearText.getText()), Integer.valueOf(monthText.getText()), Integer.valueOf(dayText.getText()));
+                        testReport.setDate(testDate);
+                        testReport.setTestType(test);
+                        db.addTestResult(testReport);
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Invalid result...!!!");
+                    }
+                    
+                    PIDtext.setText(null);
+                    resultText.setText(null);
+                    yearText.setText(null);
+                    monthText.setText(null);
+                    dayText.setText(null);
                 }else{
                     JOptionPane.showMessageDialog(this, "Invalid patient...!!!");
                 }
                 
                 
             } catch (SQLException ex) {
-                Logger.getLogger(TechnicianWindow.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                //Logger.getLogger(TechnicianWindow.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Invalid date");
+            } catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Fill all the fields");
+            } 
         }
         
         
