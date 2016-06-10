@@ -5,6 +5,8 @@
  */
 package domain;
 
+import java.sql.Date;
+
 /**
  *
  * @author sachithra sahan
@@ -14,10 +16,10 @@ public class Patient {
     private String firstName;
     private String lastName;
     private String gender;
-    private int age;
     private String bloodGroup;
     private String address;
     private String phoneNum;
+    private Date date;
 
     /**
      * @return the PatientID
@@ -75,19 +77,6 @@ public class Patient {
         this.gender = gender;
     }
 
-    /**
-     * @return the age
-     */
-    public int getAge() {
-        return age;
-    }
-
-    /**
-     * @param age the age to set
-     */
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     /**
      * @return the bloodGroup
@@ -129,6 +118,20 @@ public class Patient {
      */
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+    }
+
+    /**
+     * @return the date
+     */
+    public Date getDate() {
+        return date;
+    }
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(Date date) {
+        this.date = date;
     }
 
    

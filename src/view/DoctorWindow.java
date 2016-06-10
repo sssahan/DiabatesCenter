@@ -23,12 +23,14 @@ public class DoctorWindow extends javax.swing.JFrame {
      * Creates new form DoctorWindow
      */
     DBOperation db;
-    ArrayList<String> resultList,dateList;
+    ArrayList<String> resultList,dateList,medicineList;
+    String detail;
     public DoctorWindow() {
         initComponents();
         db = DBOperation.getInstance();
         resultList=new ArrayList();
         dateList=new ArrayList();
+        medicineList=new ArrayList();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -173,7 +175,11 @@ public class DoctorWindow extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             if(db.isValidPatient(Integer.valueOf(textPID.getText()))){
-                
+                medicineList=db.getMedicineList(textPID.getText());
+                detail=db.getDetails(textPID.getText());
+                ViewTreatmentWindow vtw=new ViewTreatmentWindow(medicineList, detail);
+                vtw.setLocationRelativeTo(null);
+                vtw.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(this, "Invalid patient...!!!");
             }

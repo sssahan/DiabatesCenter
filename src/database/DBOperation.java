@@ -79,7 +79,7 @@ public class DBOperation {
         pst.setString(2, patient.getFirstName());
         pst.setString(3, patient.getLastName());
         pst.setString(4, patient.getGender());
-        pst.setInt(5, patient.getAge());
+        pst.setDate(5, patient.getDate());
         pst.setString(6, patient.getBloodGroup());
         pst.setString(7, patient.getAddress());
         pst.setString(8, patient.getPhoneNum());
@@ -277,5 +277,32 @@ public class DBOperation {
         }
         closeConnection();
         return dateList;
+    }
+    
+    public ArrayList<String> getMedicineList(String pid) throws SQLException{
+        ArrayList<String> medicineList=new ArrayList();
+        setConenction();
+        pst=con.prepareStatement("select medicine_type,dosage from Medicine where treatment_id=(select max(treatment_id) from Treatment where PID=?);");
+        pst.setString(1, pid);
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            medicineList.add(resultSet.getString(1));
+            medicineList.add(resultSet.getString(2));
+        }
+        closeConnection();
+        return medicineList;
+    }
+    
+    public String getDetails(String pid) throws SQLException{
+        String detail=null;
+        setConenction();
+        pst=con.prepareStatement("select details from Treatment where treatment_id=(select max(treatment_id) from Treatment where PID=?);");
+        pst.setString(1, pid);
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            detail=resultSet.getString(1);
+        }
+        closeConnection();
+        return detail;
     }
 }
