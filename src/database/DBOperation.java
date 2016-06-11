@@ -305,4 +305,22 @@ public class DBOperation {
         closeConnection();
         return detail;
     }
+    
+    public Patient getPatient(String pid) throws SQLException{
+        Patient patient=new Patient();
+        setConenction();
+        pst=con.prepareStatement("SELECT * FROM Patient WHERE PID=?");
+        pst.setString(1, pid);
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            patient.setFirstName(resultSet.getString(2));
+            patient.setLastName(resultSet.getString(3));
+            patient.setGender(resultSet.getString(4));
+            patient.setDate(resultSet.getDate(5));
+            patient.setBloodGroup(resultSet.getString(6));
+            patient.setAddress(resultSet.getString(7));
+            patient.setPhoneNum(resultSet.getString(8));
+        }
+        return patient;
+    }
 }

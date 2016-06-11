@@ -133,6 +133,7 @@ public class AssistantWindow extends javax.swing.JFrame {
 
         jLabel8.setText("day");
 
+        rowButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         rowButton.setText("Create table");
         rowButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,6 +141,7 @@ public class AssistantWindow extends javax.swing.JFrame {
             }
         });
 
+        deleteButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         deleteButton.setText("Delete table");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +149,7 @@ public class AssistantWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Size of table :");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
