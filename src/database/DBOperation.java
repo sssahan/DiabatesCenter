@@ -5,9 +5,13 @@
  */
 package database;
 
+import domain.Doctor;
 import domain.Employee;
+import domain.LabTechnician;
+import domain.MedicalAssistant;
 import domain.Medicine;
 import domain.Patient;
+import domain.Receptionist;
 import domain.Report;
 import domain.Treatment;
 import java.sql.Connection;
@@ -123,6 +127,28 @@ public class DBOperation {
             pst.executeUpdate();
         }
         
+        closeConnection();
+    }
+    
+    public void updateEmployee(Employee employee) throws SQLException{
+        setConenction();
+        pst=con.prepareStatement("UPDATE Employee SET EID=?, name=?, position=?, NIC=?, username=?, password=? ");
+        pst.setInt(1, employee.getEmployeeID());
+        pst.setString(2, employee.getName());
+        pst.setString(3, employee.getPosition());
+        pst.setString(4, employee.getNIC());
+        pst.setString(5, employee.getUsername());
+        pst.setString(6, employee.getPassword());
+        pst.executeUpdate();
+        closeConnection();
+        
+    }
+    
+    public void removeEmployee(int eid) throws SQLException{
+        setConenction();
+        pst=con.prepareStatement("DELETE FROM Employee WHERE EID=?");
+        pst.setInt(1, eid);
+        pst.executeUpdate();
         closeConnection();
     }
     
@@ -282,7 +308,7 @@ public class DBOperation {
     public ArrayList<String> getMedicineList(String pid) throws SQLException{
         ArrayList<String> medicineList=new ArrayList();
         setConenction();
-        pst=con.prepareStatement("select medicine_type,dosage from Medicine where treatment_id=(select max(treatment_id) from Treatment where PID=?);");
+        pst=con.prepareStatement("SELECT medicine_type,dosage FROM Medicine WHERE treatment_id=(SELECT max(treatment_id) FROM Treatment WHERE PID=?);");
         pst.setString(1, pid);
         resultSet=pst.executeQuery();
         while(resultSet.next()){
@@ -296,7 +322,7 @@ public class DBOperation {
     public String getDetails(String pid) throws SQLException{
         String detail=null;
         setConenction();
-        pst=con.prepareStatement("select details from Treatment where treatment_id=(select max(treatment_id) from Treatment where PID=?);");
+        pst=con.prepareStatement("SELECT details FROM Treatment WHERE treatment_id=(SELECT max(treatment_id) FROM Treatment WHERE PID=?);");
         pst.setString(1, pid);
         resultSet=pst.executeQuery();
         while(resultSet.next()){
@@ -322,5 +348,72 @@ public class DBOperation {
             patient.setPhoneNum(resultSet.getString(8));
         }
         return patient;
+    }
+    
+    public String getPosition(String eid) throws SQLException{
+        String position;
+        setConenction();
+        pst=con.prepareStatement("SELECT position FROM Employee WHERE EID=?");
+        pst.setString(1, eid);
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            position=resultSet.getString(1);
+            return position;
+        }
+        return null;
+        
+    }
+    
+    public Employee getEmployee(String eid) throws SQLException{
+        Employee employee=null;
+        String position=getPosition(eid);
+        setConenction();
+        pst=con.prepareStatement("SELECT * FROM Employee WHERE EID=?");
+        pst.setString(1, eid);
+        resultSet=pst.executeQuery();
+        if(null != position)switch (position) {
+            case "Doctor":
+                employee=new Doctor();
+                while(resultSet.next()){
+                    employee.setNIC(resultSet.getString(4));
+                    employee.setName(resultSet.getString(2));
+                    employee.setPosition(resultSet.getString(3));
+                    employee.setEmployeeID(resultSet.getInt(1));
+                    employee.setUsername(resultSet.getString(5));
+                }
+                break;
+            case "Receptionist":
+                employee=new Receptionist();
+                while(resultSet.next()){
+                    employee.setNIC(resultSet.getString(4));
+                    employee.setName(resultSet.getString(2));
+                    employee.setPosition(resultSet.getString(3));
+                    employee.setEmployeeID(resultSet.getInt(1));
+                    employee.setUsername(resultSet.getString(5));
+                }
+                break;
+            case "Lab Technician":
+                employee=new LabTechnician();
+                while(resultSet.next()){
+                    employee.setNIC(resultSet.getString(4));
+                    employee.setName(resultSet.getString(2));
+                    employee.setPosition(resultSet.getString(3));
+                    employee.setEmployeeID(resultSet.getInt(1));
+                    employee.setUsername(resultSet.getString(5));
+                }
+                break;
+            case "Medical Assistant":
+                employee=new MedicalAssistant();
+                while(resultSet.next()){
+                    employee.setNIC(resultSet.getString(4));
+                    employee.setName(resultSet.getString(2));
+                    employee.setPosition(resultSet.getString(3));
+                    employee.setEmployeeID(resultSet.getInt(1));
+                    employee.setUsername(resultSet.getString(5));
+                }
+                break;
+        }
+        closeConnection();
+        return employee;
     }
 }
