@@ -27,7 +27,6 @@ public class ViewTreatmentWindow extends javax.swing.JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     private void setTable(ArrayList<String> medicine,String detail){
-        System.out.println(medicine.size());
         String data1 = null;
         String data2 = null;
         Object[] row = { data1, data2};
