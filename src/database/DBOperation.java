@@ -8,6 +8,7 @@ package database;
 import domain.Doctor;
 import domain.Employee;
 import domain.LabTechnician;
+import domain.Manager;
 import domain.MedicalAssistant;
 import domain.Medicine;
 import domain.Patient;
@@ -132,13 +133,13 @@ public class DBOperation {
     
     public void updateEmployee(Employee employee) throws SQLException{
         setConenction();
-        pst=con.prepareStatement("UPDATE Employee SET EID=?, name=?, position=?, NIC=?, username=?, password=? ");
-        pst.setInt(1, employee.getEmployeeID());
-        pst.setString(2, employee.getName());
-        pst.setString(3, employee.getPosition());
-        pst.setString(4, employee.getNIC());
-        pst.setString(5, employee.getUsername());
-        pst.setString(6, employee.getPassword());
+        pst=con.prepareStatement("UPDATE Employee SET name=?, position=?, NIC=?, username=?, password=? WHERE EID=? ");
+        pst.setInt(6, employee.getEmployeeID());
+        pst.setString(1, employee.getName());
+        pst.setString(2, employee.getPosition());
+        pst.setString(3, employee.getNIC());
+        pst.setString(4, employee.getUsername());
+        pst.setString(5, employee.getPassword());
         pst.executeUpdate();
         closeConnection();
         
@@ -182,6 +183,22 @@ public class DBOperation {
         closeConnection();
         return false;
 
+    }
+    
+    public boolean isValidEmployee(String eid) throws SQLException{
+        String id;
+        setConenction();
+        pst=con.prepareStatement("SELECT EID FROM Employee");
+        resultSet=pst.executeQuery();
+        while(resultSet.next()){
+            id=resultSet.getString(1);
+            if(eid.equals(id) ){
+                return true;
+            }
+        }
+        closeConnection();
+        return false;
+        
     }
     
     public boolean isAdmin(String user, String pwd){
@@ -404,6 +421,16 @@ public class DBOperation {
                 break;
             case "Medical Assistant":
                 employee=new MedicalAssistant();
+                while(resultSet.next()){
+                    employee.setNIC(resultSet.getString(4));
+                    employee.setName(resultSet.getString(2));
+                    employee.setPosition(resultSet.getString(3));
+                    employee.setEmployeeID(resultSet.getInt(1));
+                    employee.setUsername(resultSet.getString(5));
+                }
+                break;
+            case "Manager":
+                employee=new Manager();
                 while(resultSet.next()){
                     employee.setNIC(resultSet.getString(4));
                     employee.setName(resultSet.getString(2));

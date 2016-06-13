@@ -79,6 +79,9 @@ public class ManagerWindow extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         posLabel = new javax.swing.JLabel();
         nicLabel = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         btnCancelRemove = new javax.swing.JButton();
         btnRemove = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
@@ -274,6 +277,11 @@ public class ManagerWindow extends javax.swing.JFrame {
 
         btnSearchToRemove.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSearchToRemove.setText("Search");
+        btnSearchToRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchToRemoveActionPerformed(evt);
+            }
+        });
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
@@ -283,32 +291,63 @@ public class ManagerWindow extends javax.swing.JFrame {
 
         nicLabel.setText(".");
 
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel18.setText("Name :");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel19.setText("Position :");
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel20.setText("NIC :");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(posLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nicLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nicLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(posLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
+                        .addComponent(nameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(nameLabel)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameLabel)
+                    .addComponent(jLabel18))
                 .addGap(53, 53, 53)
-                .addComponent(posLabel)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(posLabel)
+                    .addComponent(jLabel19))
                 .addGap(56, 56, 56)
-                .addComponent(nicLabel)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nicLabel)
+                    .addComponent(jLabel20))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         btnCancelRemove.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelRemove.setText("Cancel");
+        btnCancelRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelRemoveActionPerformed(evt);
+            }
+        });
 
         btnRemove.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnRemove.setText("Remove");
@@ -375,6 +414,11 @@ public class ManagerWindow extends javax.swing.JFrame {
 
         btnSearchToUpdate.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSearchToUpdate.setText("Search");
+        btnSearchToUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchToUpdateActionPerformed(evt);
+            }
+        });
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Employee deails", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -415,6 +459,11 @@ public class ManagerWindow extends javax.swing.JFrame {
 
         btnCancelUpdate.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCancelUpdate.setText("Cancel");
+        btnCancelUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelUpdateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -561,10 +610,76 @@ public class ManagerWindow extends javax.swing.JFrame {
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
+        DBOperation db=DBOperation.getInstance();
+        int value;
+        value = JOptionPane.showConfirmDialog(this, "Do you want to remove ?");
+        if(value==JOptionPane.YES_OPTION){
+            try {
+                db.removeEmployee(Integer.valueOf(eidText.getText()));
+                lastEID=db.getLastEID();
+                idText.setText(String.valueOf(lastEID+1));
+                nameLabel.setText(null);
+                posLabel.setText(null);
+                nicLabel.setText(null);
+                eidText.setText(null);
+            } catch (SQLException ex) {
+                Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        DBOperation db=DBOperation.getInstance();
+        Employee employee=null;
+        String position=String.valueOf(posComboBox1.getSelectedItem());
+        switch (position) {
+            case "Doctor":
+                employee=new Doctor();
+                break;
+            case "Receptionist":
+                employee=new Receptionist();
+                break;
+            case "Manager":
+                employee=new Manager();
+                break;
+            case "Medical Assistant":
+                employee=new MedicalAssistant();
+                break;
+            case "Lab Technician":
+                employee=new LabTechnician();
+                break;
+        }
+        if(employee!=null){
+            employee.setEmployeeID(Integer.valueOf(idText1.getText()));
+            employee.setNIC(nicText1.getText());
+            employee.setName(nameText1.getText());
+            employee.setPosition(position);
+            employee.setUsername(unameText1.getText());
+            if(Arrays.equals(passText1.getPassword(), conPassText1.getPassword())){
+                employee.setPassword(new String(passText1.getPassword()));
+                try {
+                    db.updateEmployee(employee);
+                    passText1.setText(null);
+                    conPassText1.setText(null);
+                    idText1.setText(null);
+                    nicText1.setText(null);
+                    unameText1.setText(null);
+                    posComboBox1.setSelectedItem(null);
+                    nameText1.setText(null);
+                    eidText1.setText(null);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "password invalid..!!");
+                passText1.setText(null);
+                conPassText1.setText(null);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Select position of the employee");
+        }
+            
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -618,6 +733,8 @@ public class ManagerWindow extends javax.swing.JFrame {
                 passText.setText(null);
                 conPassText.setText(null);
             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Enter the position of employee");
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -630,6 +747,71 @@ public class ManagerWindow extends javax.swing.JFrame {
         conPassText.setText(null);
         posComboBox.setSelectedItem(null);
     }//GEN-LAST:event_btnCancelAddActionPerformed
+
+    private void btnSearchToRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchToRemoveActionPerformed
+        try {
+            // TODO add your handling code here:
+            Employee employee;
+            DBOperation db=DBOperation.getInstance();
+            if(db.isValidEmployee(eidText.getText())){
+                employee=db.getEmployee(eidText.getText());
+                nameLabel.setText(employee.getName());
+                posLabel.setText(employee.getPosition());
+                nicLabel.setText(employee.getNIC());
+            }else{
+                
+                nameLabel.setText(null);
+                posLabel.setText(null);
+                nicLabel.setText(null);
+                JOptionPane.showMessageDialog(this, "Invalid employee...!!!");
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSearchToRemoveActionPerformed
+
+    private void btnCancelRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelRemoveActionPerformed
+        // TODO add your handling code here:
+        eidText.setText(null);
+        nameLabel.setText(null);
+        posLabel.setText(null);
+        nicLabel.setText(null);
+    }//GEN-LAST:event_btnCancelRemoveActionPerformed
+
+    private void btnSearchToUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchToUpdateActionPerformed
+        // TODO add your handling code here:
+        try {
+            Employee employee;
+            DBOperation db=DBOperation.getInstance();
+            if(db.isValidEmployee(eidText1.getText())){
+                employee=db.getEmployee(eidText1.getText());
+                idText1.setText(String.valueOf(employee.getEmployeeID()));
+                nameText1.setText(employee.getName());
+                posComboBox1.setSelectedItem(employee.getPosition());
+                nicText1.setText(employee.getNIC());
+                unameText1.setText(employee.getUsername());
+            }else{
+                
+                JOptionPane.showMessageDialog(this, "Invalid employee...!!!");
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSearchToUpdateActionPerformed
+
+    private void btnCancelUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelUpdateActionPerformed
+        // TODO add your handling code here:
+        passText1.setText(null);
+        conPassText1.setText(null);
+        idText1.setText(null);
+        nicText1.setText(null);
+        unameText1.setText(null);
+        posComboBox1.setSelectedItem(null);
+        nameText1.setText(null);
+        eidText1.setText(null);
+    }//GEN-LAST:event_btnCancelUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -690,7 +872,10 @@ public class ManagerWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
