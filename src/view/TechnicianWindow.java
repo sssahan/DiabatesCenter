@@ -107,6 +107,7 @@ public class TechnicianWindow extends javax.swing.JFrame {
 
         testComboBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         testComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "HBA1C", "FBS", "Random", " " }));
+        testComboBox.setSelectedIndex(-1);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 51, 255));
@@ -247,13 +248,17 @@ public class TechnicianWindow extends javax.swing.JFrame {
                 testReport.setTestID(db.getLastTestID()+1);
                 testReport.setEmployeeID(Integer.valueOf(tecIDtext.getText()));//have to chech eid in database
                 if(db.isValidPatient(pid)){
-                    if(!(resultText.getText().isEmpty())){
+                    if(resultText.getText().equals("") || !(resultText.getText().matches("\\d{3}")) ){
                         testReport.setPatientID(pid);//have to check pid in database
                         testReport.setResult(resultText.getText());
                         Date testDate=Help.getDate(Integer.valueOf(yearText.getText()), Integer.valueOf(monthText.getText()), Integer.valueOf(dayText.getText()));
                         testReport.setDate(testDate);
-                        testReport.setTestType(test);
-                        db.addTestResult(testReport);
+                        if(test==null){
+                            JOptionPane.showMessageDialog(this, "Test type cannot be empty..!!");
+                        }else{
+                            testReport.setTestType(test);
+                            db.addTestResult(testReport);
+                        }
                     }else{
                         JOptionPane.showMessageDialog(this, "Invalid result...!!!");
                     }

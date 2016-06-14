@@ -245,6 +245,7 @@
                 <StringItem index="3" value=" "/>
               </StringArray>
             </Property>
+            <Property name="selectedIndex" type="int" value="-1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">

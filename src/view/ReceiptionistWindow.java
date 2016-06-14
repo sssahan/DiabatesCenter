@@ -135,7 +135,7 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         jLabel2.setText("First Name :");
 
         txtPID.setEditable(false);
-        txtPID.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtPID.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtPID.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         txtPID.setEnabled(false);
 
@@ -153,6 +153,11 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         btnCanel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCanel.setForeground(new java.awt.Color(0, 51, 255));
         btnCanel.setText(" Cancel");
+        btnCanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCanelActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 51, 255));
@@ -623,12 +628,13 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         Patient patient=new Patient();
         //DBOperation db=DBOperation.getInstance();
         String phoneNum=txtPatientContactNo.getText();
-        if(txtFirstName.getText()!=null && txtLastName.getText()!=null && cmbxGender.getSelectedItem()!=null && cmbxBloodGroup.getSelectedItem()!=null){
+        //if(txtFirstName.getText()!=null && txtLastName.getText()!=null && cmbxGender.getSelectedItem()!=null && cmbxBloodGroup.getSelectedItem()!=null){
             try {
                 Date date=Help.getDate(Integer.valueOf(yearText.getText()), Integer.valueOf(monthText.getText()), Integer.valueOf(dayText.getText()));
                 lastPID=db.getLastPID();
                 txtPID.setText(String.valueOf(lastPID+1));
-                if(phoneNum.matches("\\d{10}")){
+                //if(phoneNum.matches("\\d{10}")){
+                if(validDetails()){
                     patient.setPatientID(lastPID+1);
                     patient.setFirstName(txtFirstName.getText());
                     patient.setLastName(txtLastName.getText());
@@ -650,10 +656,11 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
                     txtAddress2.setText(null);
                     txtAddress3.setText(null);
                     txtPatientContactNo.setText(null);
-                }else{
+                }
+                /*}else{
                     JOptionPane.showMessageDialog(this, "invalid phone number..!!");
                     txtPatientContactNo.setText(null);
-                }
+                }*/
 
             } catch (SQLException ex) {
                 //Logger.getLogger(ReceiptionistWindow.class.getName()).log(Level.SEVERE, null, ex);
@@ -662,13 +669,48 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Fill all the required fields");
             }
 
-        }else{
+        /*}else{
             JOptionPane.showMessageDialog(this, "Fill all the required fields..!!");
             txtPatientContactNo.setText(null);
-        }
+        }*/
 
     }//GEN-LAST:event_btnAddPatientActionPerformed
 
+    private void btnCanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanelActionPerformed
+        // TODO add your handling code here:
+        txtFirstName.setText(null);
+        txtLastName.setText(null);
+        yearText.setText(null);
+        monthText.setText(null);
+        dayText.setText(null);
+        txtAddress1.setText(null);
+        txtAddress2.setText(null);
+        txtAddress3.setText(null);
+        txtPatientContactNo.setText(null);
+    }//GEN-LAST:event_btnCanelActionPerformed
+    private boolean validDetails(){
+        if(txtFirstName.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "First name cannot be empty..!!");
+            return false;
+        }
+        if(txtLastName.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Last name cannot be empty..!!");
+            return false;
+        }
+        if(cmbxGender.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(this, "Gender cannot be empty..!!");
+            return false;
+        }
+        if(!(txtPatientContactNo.getText().matches("\\d{10}"))){
+            JOptionPane.showMessageDialog(this, "Invalid phone number..!!");
+            return false;
+        }
+        if(cmbxBloodGroup.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(this, "Blood Group cannot be empty..!!");
+            return false;
+        }
+        return true;
+    }
     /**
      * @param args the command line arguments
      */

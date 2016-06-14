@@ -5,6 +5,7 @@
  */
 package view;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import database.DBOperation;
 import domain.Doctor;
 import domain.Employee;
@@ -473,7 +474,7 @@ public class ManagerWindow extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(0, 51, 255));
         jLabel15.setText("Position");
 
-        posComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Doctor", "Receptionist", "Lab Technician", "Medical Assistant" }));
+        posComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Doctor", "Receptionist", "Lab Technician", "Medical Assistant", "Manager" }));
         posComboBox1.setSelectedIndex(-1);
 
         nicText1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -693,34 +694,30 @@ public class ManagerWindow extends javax.swing.JFrame {
                 employee=new LabTechnician();
                 break;
         }
-        if(employee!=null){
+        if(validateUpdateDetails()){
             employee.setEmployeeID(Integer.valueOf(idText1.getText()));
             employee.setNIC(nicText1.getText());
             employee.setName(nameText1.getText());
             employee.setPosition(position);
             employee.setUsername(unameText1.getText());
-            if(Arrays.equals(passText1.getPassword(), conPassText1.getPassword())){
-                employee.setPassword(new String(passText1.getPassword()));
-                try {
-                    db.updateEmployee(employee);
-                    passText1.setText(null);
-                    conPassText1.setText(null);
-                    idText1.setText(null);
-                    nicText1.setText(null);
-                    unameText1.setText(null);
-                    posComboBox1.setSelectedItem(null);
-                    nameText1.setText(null);
-                    eidText1.setText(null);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }else{
-                JOptionPane.showMessageDialog(this, "password invalid..!!");
+            employee.setPassword(new String(passText1.getPassword()));
+            try {
+                db.updateEmployee(employee);
                 passText1.setText(null);
                 conPassText1.setText(null);
+                idText1.setText(null);
+                nicText1.setText(null);
+                unameText1.setText(null);
+                posComboBox1.setSelectedItem(null);
+                nameText1.setText(null);
+                eidText1.setText(null);
+            } catch (MySQLIntegrityConstraintViolationException ex) {
+                JOptionPane.showMessageDialog(this, "Username already exist..!!");
+                unameText1.setText(null);
+            } catch (SQLException ex) {
+                Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
-            JOptionPane.showMessageDialog(this, "Select position of the employee");
+            
         }
             
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -750,36 +747,30 @@ public class ManagerWindow extends javax.swing.JFrame {
                 employee=new LabTechnician();
                 break;
         }
-        //if(employee!=null){
+        
         if(validateAddDetails()){
             employee.setEmployeeID(lastEID+1);
             employee.setName(nameText.getText());
             employee.setPosition(position);
             employee.setNIC(nicText.getText());
             employee.setUsername(unameText.getText());
-            //if(Arrays.equals(passText.getPassword(), conPassText.getPassword())){
-                employee.setPassword(new String(passText.getPassword()));
-                try {
-                    db.addEmployee(employee);
-                    lastEID=db.getLastEID();
-                    idText.setText(String.valueOf(lastEID+1));
-                    nameText.setText(null);
-                    nicText.setText(null);
-                    unameText.setText(null);
-                    passText.setText(null);
-                    conPassText.setText(null);
-                    posComboBox.setSelectedItem(null);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
-                } 
-            /*}else{
-                JOptionPane.showMessageDialog(this, "password invalid..!!");
+            employee.setPassword(new String(passText.getPassword()));
+            try {
+                db.addEmployee(employee);
+                lastEID=db.getLastEID();
+                idText.setText(String.valueOf(lastEID+1));
+                nameText.setText(null);
+                nicText.setText(null);
+                unameText.setText(null);
                 passText.setText(null);
                 conPassText.setText(null);
-            }
-        /*}else{
-            JOptionPane.showMessageDialog(this, "Enter the position of employee");
-        }*/
+                posComboBox.setSelectedItem(null);
+            }catch (MySQLIntegrityConstraintViolationException ex) {
+                JOptionPane.showMessageDialog(this, "Username already exist..!!");
+                unameText.setText(null);
+            }catch (SQLException ex) {
+                Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
+            } 
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
