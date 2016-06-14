@@ -52,6 +52,7 @@ public class DoctorWindow extends javax.swing.JFrame {
         btnHBA1C = new javax.swing.JButton();
         btnFBS = new javax.swing.JButton();
         btnRandom = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -64,7 +65,7 @@ public class DoctorWindow extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,9 +76,11 @@ public class DoctorWindow extends javax.swing.JFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setText("Patient ID :");
 
         btnTreatment.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnTreatment.setForeground(new java.awt.Color(0, 51, 255));
         btnTreatment.setText("View previous treatments");
         btnTreatment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +89,7 @@ public class DoctorWindow extends javax.swing.JFrame {
         });
 
         btnHBA1C.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnHBA1C.setForeground(new java.awt.Color(0, 51, 255));
         btnHBA1C.setText("View HBA1C prograss");
         btnHBA1C.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +98,7 @@ public class DoctorWindow extends javax.swing.JFrame {
         });
 
         btnFBS.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnFBS.setForeground(new java.awt.Color(0, 51, 255));
         btnFBS.setText("View FBS prograss");
         btnFBS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,10 +107,20 @@ public class DoctorWindow extends javax.swing.JFrame {
         });
 
         btnRandom.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnRandom.setForeground(new java.awt.Color(0, 51, 255));
         btnRandom.setText("View Random sugar prograss");
         btnRandom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRandomActionPerformed(evt);
+            }
+        });
+
+        btnClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnClear.setForeground(new java.awt.Color(0, 51, 255));
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
             }
         });
 
@@ -119,21 +134,22 @@ public class DoctorWindow extends javax.swing.JFrame {
                         .addGap(138, 138, 138)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textPID, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(textPID, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnClear)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnTreatment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnFBS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnTreatment)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnFBS, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnHBA1C, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnRandom)
-                .addGap(94, 94, 94))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnRandom))
+                            .addComponent(btnHBA1C, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,16 +157,17 @@ public class DoctorWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(textPID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addComponent(btnTreatment)
+                    .addComponent(textPID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClear))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnTreatment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHBA1C, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnHBA1C)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFBS)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRandom)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnFBS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRandom, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,7 +182,8 @@ public class DoctorWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -175,6 +193,7 @@ public class DoctorWindow extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             if(db.isValidPatient(Integer.valueOf(textPID.getText()))){
+                btnTreatment.setEnabled(false);
                 medicineList=db.getMedicineList(textPID.getText());
                 detail=db.getDetails(textPID.getText());
                 ViewTreatmentWindow vtw=new ViewTreatmentWindow(medicineList, detail);
@@ -196,6 +215,7 @@ public class DoctorWindow extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             if(db.isValidPatient(Integer.valueOf(textPID.getText()))){
+                btnHBA1C.setEnabled(false);
                 resultList=db.getResultList(textPID.getText(), "HBA1C");
                 dateList=db.getDateList(textPID.getText(), "HBA1C");
                 GraphCreater.createGraph(resultList, dateList,"HBA1C");
@@ -215,6 +235,7 @@ public class DoctorWindow extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             if(db.isValidPatient(Integer.valueOf(textPID.getText()))){
+                btnFBS.setEnabled(false);
                 resultList=db.getResultList(textPID.getText(), "FBS");
                 dateList=db.getDateList(textPID.getText(), "FBS");
                 GraphCreater.createGraph(resultList, dateList,"FBS");
@@ -234,6 +255,7 @@ public class DoctorWindow extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             if(db.isValidPatient(Integer.valueOf(textPID.getText()))){
+                btnRandom.setEnabled(false);
                 resultList=db.getResultList(textPID.getText(), "Random");
                 dateList=db.getDateList(textPID.getText(), "Random");
                 GraphCreater.createGraph(resultList, dateList,"Random");
@@ -248,6 +270,16 @@ public class DoctorWindow extends javax.swing.JFrame {
             Logger.getLogger(DoctorWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnRandomActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        textPID.setText(null);
+        btnTreatment.setEnabled(true);
+        btnFBS.setEnabled(true);
+        btnHBA1C.setEnabled(true);
+        btnRandom.setEnabled(true);
+        
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -285,6 +317,7 @@ public class DoctorWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnFBS;
     private javax.swing.JButton btnHBA1C;
     private javax.swing.JButton btnRandom;

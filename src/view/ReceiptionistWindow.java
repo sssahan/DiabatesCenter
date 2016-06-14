@@ -121,13 +121,16 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
+        jTabbedPane3.setForeground(new java.awt.Color(0, 51, 255));
         jTabbedPane3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Patient ID :");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("First Name :");
 
@@ -139,6 +142,7 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         txtFirstName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         btnAddPatient.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnAddPatient.setForeground(new java.awt.Color(0, 51, 255));
         btnAddPatient.setText(" Add Patient");
         btnAddPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,25 +151,32 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         });
 
         btnCanel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCanel.setForeground(new java.awt.Color(0, 51, 255));
         btnCanel.setText(" Cancel");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Last Name :");
 
         txtLastName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 51, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Date of Birth :");
 
+        jLabel12.setForeground(new java.awt.Color(0, 51, 255));
         jLabel12.setText("month");
 
+        jLabel14.setForeground(new java.awt.Color(0, 51, 255));
         jLabel14.setText("day");
 
+        jLabel11.setForeground(new java.awt.Color(0, 51, 255));
         jLabel11.setText("year");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 51, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Gender :");
 
@@ -187,10 +198,12 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         txtPatientContactNo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 51, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Patient Contact No :");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 51, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("Blood Group :");
 
@@ -198,6 +211,7 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         cmbxBloodGroup.setSelectedIndex(-1);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 51, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Address :");
 
@@ -322,10 +336,12 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         jTabbedPane3.addTab("Add new patient", jPanel6);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Patient ID :");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 51, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("First Name :");
 
@@ -336,20 +352,24 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         txtLastName1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 51, 255));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Last Name :");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 51, 255));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("Date of Birth :");
 
         txtBirthday.setEditable(false);
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 51, 255));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel20.setText("Gender :");
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 51, 255));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel21.setText("Address :");
 
@@ -360,14 +380,17 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         txtPatientContactNo1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(0, 51, 255));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel22.setText("Patient Contact No :");
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(0, 51, 255));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel23.setText("Blood Group :");
 
         btnExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(0, 51, 255));
         btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -376,6 +399,7 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         });
 
         btnClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnClear.setForeground(new java.awt.Color(0, 51, 255));
         btnClear.setText("Clear details");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -384,6 +408,7 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         });
 
         btnCheck.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCheck.setForeground(new java.awt.Color(0, 51, 255));
         btnCheck.setText("Check details");
         btnCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -480,13 +505,10 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addComponent(jLabel22))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtPatientContactNo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtPatientContactNo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBlood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

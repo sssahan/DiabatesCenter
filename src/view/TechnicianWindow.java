@@ -84,18 +84,23 @@ public class TechnicianWindow extends javax.swing.JFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setText("Tecnician ID :");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 255));
         jLabel2.setText("Patient ID :");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 255));
         jLabel4.setText("Date :");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 255));
         jLabel5.setText("Test type :");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 51, 255));
         jLabel6.setText("Result :");
 
         tecIDtext.setEditable(false);
@@ -104,9 +109,11 @@ public class TechnicianWindow extends javax.swing.JFrame {
         testComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "HBA1C", "FBS", "Random", " " }));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 51, 255));
         jButton1.setText("Cancel");
 
         saveButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        saveButton.setForeground(new java.awt.Color(0, 51, 255));
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,10 +121,13 @@ public class TechnicianWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setForeground(new java.awt.Color(0, 51, 255));
         jLabel7.setText("year");
 
+        jLabel8.setForeground(new java.awt.Color(0, 51, 255));
         jLabel8.setText("month");
 
+        jLabel9.setForeground(new java.awt.Color(0, 51, 255));
         jLabel9.setText("day");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

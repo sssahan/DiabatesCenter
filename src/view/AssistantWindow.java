@@ -77,16 +77,20 @@ public class AssistantWindow extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 255));
         jLabel2.setText("Assistant ID :");
 
         assistantIDtxt.setEditable(false);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 255));
         jLabel4.setText("Patient ID :");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 255));
         jLabel5.setText("Date :");
 
+        medicineTable.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         medicineTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         medicineTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,6 +109,7 @@ public class AssistantWindow extends javax.swing.JFrame {
         jScrollPane1.setViewportView(medicineTable);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setText("Details :");
 
         detailsTxt.setColumns(20);
@@ -112,6 +117,7 @@ public class AssistantWindow extends javax.swing.JFrame {
         jScrollPane2.setViewportView(detailsTxt);
 
         cancelButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cancelButton.setForeground(new java.awt.Color(0, 51, 255));
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +126,7 @@ public class AssistantWindow extends javax.swing.JFrame {
         });
 
         saveButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        saveButton.setForeground(new java.awt.Color(0, 51, 255));
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,13 +134,17 @@ public class AssistantWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setForeground(new java.awt.Color(0, 51, 255));
         jLabel6.setText("year");
 
+        jLabel7.setForeground(new java.awt.Color(0, 51, 255));
         jLabel7.setText("month");
 
+        jLabel8.setForeground(new java.awt.Color(0, 51, 255));
         jLabel8.setText("day");
 
         rowButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        rowButton.setForeground(new java.awt.Color(0, 51, 255));
         rowButton.setText("Create table");
         rowButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +153,7 @@ public class AssistantWindow extends javax.swing.JFrame {
         });
 
         deleteButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        deleteButton.setForeground(new java.awt.Color(0, 51, 255));
         deleteButton.setText("Delete table");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +162,7 @@ public class AssistantWindow extends javax.swing.JFrame {
         });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 51, 255));
         jLabel9.setText("Size of table :");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

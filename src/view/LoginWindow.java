@@ -71,12 +71,15 @@ public class LoginWindow extends javax.swing.JFrame {
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setText("User name :");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 255));
         jLabel2.setText("Password   :");
 
         loginButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        loginButton.setForeground(new java.awt.Color(0, 51, 255));
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +88,7 @@ public class LoginWindow extends javax.swing.JFrame {
         });
 
         cancelButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cancelButton.setForeground(new java.awt.Color(0, 51, 255));
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +97,7 @@ public class LoginWindow extends javax.swing.JFrame {
         });
 
         settingButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        settingButton.setForeground(new java.awt.Color(0, 51, 255));
         settingButton.setText("Settings");
         settingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

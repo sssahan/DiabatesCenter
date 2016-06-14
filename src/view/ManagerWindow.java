@@ -127,38 +127,48 @@ public class ManagerWindow extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
+        jTabbedPane1.setForeground(new java.awt.Color(0, 51, 255));
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Employee deails", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Employee deails", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 102))); // NOI18N
+        jPanel5.setForeground(new java.awt.Color(0, 51, 255));
         jPanel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setText("ID");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 255));
         jLabel2.setText("UserName");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 255));
         jLabel4.setText("Password");
 
         idText.setEditable(false);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 51, 255));
         jLabel5.setText("Confirm Password");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 51, 255));
         jLabel6.setText("Position");
 
         posComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Doctor", "Receptionist", "Lab Technician", "Medical Assistant" }));
         posComboBox.setSelectedIndex(-1);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 51, 255));
         jLabel7.setText("NIC");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 51, 255));
         jLabel9.setText("Name");
 
         btnAdd.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(0, 51, 255));
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +177,7 @@ public class ManagerWindow extends javax.swing.JFrame {
         });
 
         btnCancelAdd.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCancelAdd.setForeground(new java.awt.Color(0, 51, 255));
         btnCancelAdd.setText("Cancel");
         btnCancelAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,6 +278,7 @@ public class ManagerWindow extends javax.swing.JFrame {
         jTabbedPane1.addTab("Add employee", jPanel3);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 51, 255));
         jLabel8.setText("Employee ID :");
 
         eidText.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -276,6 +288,7 @@ public class ManagerWindow extends javax.swing.JFrame {
         });
 
         btnSearchToRemove.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnSearchToRemove.setForeground(new java.awt.Color(0, 51, 255));
         btnSearchToRemove.setText("Search");
         btnSearchToRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,7 +296,8 @@ public class ManagerWindow extends javax.swing.JFrame {
             }
         });
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 102))); // NOI18N
+        jPanel6.setForeground(new java.awt.Color(0, 51, 255));
 
         nameLabel.setText(".");
 
@@ -292,13 +306,16 @@ public class ManagerWindow extends javax.swing.JFrame {
         nicLabel.setText(".");
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 51, 255));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel18.setText("Name :");
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 51, 255));
         jLabel19.setText("Position :");
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 51, 255));
         jLabel20.setText("NIC :");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -342,6 +359,7 @@ public class ManagerWindow extends javax.swing.JFrame {
         );
 
         btnCancelRemove.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCancelRemove.setForeground(new java.awt.Color(0, 51, 255));
         btnCancelRemove.setText("Cancel");
         btnCancelRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,6 +368,7 @@ public class ManagerWindow extends javax.swing.JFrame {
         });
 
         btnRemove.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnRemove.setForeground(new java.awt.Color(0, 51, 255));
         btnRemove.setText("Remove");
         btnRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -404,6 +423,7 @@ public class ManagerWindow extends javax.swing.JFrame {
         jTabbedPane1.addTab("Remove employee", jPanel4);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 51, 255));
         jLabel10.setText("Employee ID :");
 
         eidText1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -413,6 +433,7 @@ public class ManagerWindow extends javax.swing.JFrame {
         });
 
         btnSearchToUpdate.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnSearchToUpdate.setForeground(new java.awt.Color(0, 51, 255));
         btnSearchToUpdate.setText("Search");
         btnSearchToUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,36 +441,45 @@ public class ManagerWindow extends javax.swing.JFrame {
             }
         });
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Employee deails", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Employee deails", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 102))); // NOI18N
+        jPanel8.setForeground(new java.awt.Color(0, 0, 102));
         jPanel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 51, 255));
         jLabel11.setText("ID");
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 51, 255));
         jLabel12.setText("UserName");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 51, 255));
         jLabel13.setText("Password");
 
         idText1.setEditable(false);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 51, 255));
         jLabel14.setText("Confirm Password");
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 51, 255));
         jLabel15.setText("Position");
 
         posComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Doctor", "Receptionist", "Lab Technician", "Medical Assistant" }));
         posComboBox1.setSelectedIndex(-1);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 51, 255));
         jLabel16.setText("NIC");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 51, 255));
         jLabel17.setText("Name");
 
         btnUpdate.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(0, 51, 255));
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,6 +488,7 @@ public class ManagerWindow extends javax.swing.JFrame {
         });
 
         btnCancelUpdate.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnCancelUpdate.setForeground(new java.awt.Color(0, 51, 255));
         btnCancelUpdate.setText("Cancel");
         btnCancelUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

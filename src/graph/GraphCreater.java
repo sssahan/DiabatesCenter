@@ -26,7 +26,7 @@ public class GraphCreater extends JFrame{
         super(applicationTitle);
         JFreeChart lineChart = ChartFactory.createLineChart(
         chartTitle,
-        "Testing date","Quantitiy of sugar level",
+        "Testing date","Sugar level - units(mg/dL)",
         createDataset(resultList,dateList),
         PlotOrientation.VERTICAL,
         true,true,false);

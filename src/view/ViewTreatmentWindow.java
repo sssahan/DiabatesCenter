@@ -103,9 +103,11 @@ public class ViewTreatmentWindow extends javax.swing.JFrame {
         jScrollPane2.setViewportView(detailsTxtArea);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
         jLabel1.setText("details :");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 51, 255));
         jButton1.setText("Exit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
