@@ -443,4 +443,16 @@ public class DBOperation {
         closeConnection();
         return employee;
     }
+    
+    public boolean checkEmployeeNIC(String nic) throws SQLException{
+        setConenction();             
+            pst = con.prepareStatement("SELECT * FROM Employee WHERE NIC=?");
+            pst.setString(1, nic);
+            resultSet = pst.executeQuery();
+            while(resultSet.next()){     
+                return true;
+            }    
+            con.close(); 
+        return false;
+    }
 }

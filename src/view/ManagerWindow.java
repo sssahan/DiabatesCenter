@@ -159,6 +159,12 @@ public class ManagerWindow extends javax.swing.JFrame {
         posComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Doctor", "Receptionist", "Lab Technician", "Medical Assistant" }));
         posComboBox.setSelectedIndex(-1);
 
+        nicText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nicTextKeyTyped(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 51, 255));
         jLabel7.setText("NIC");
@@ -470,6 +476,12 @@ public class ManagerWindow extends javax.swing.JFrame {
         posComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Doctor", "Receptionist", "Lab Technician", "Medical Assistant" }));
         posComboBox1.setSelectedIndex(-1);
 
+        nicText1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nicText1KeyTyped(evt);
+            }
+        });
+
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 51, 255));
         jLabel16.setText("NIC");
@@ -738,13 +750,14 @@ public class ManagerWindow extends javax.swing.JFrame {
                 employee=new LabTechnician();
                 break;
         }
-        if(employee!=null){
+        //if(employee!=null){
+        if(validateAddDetails()){
             employee.setEmployeeID(lastEID+1);
             employee.setName(nameText.getText());
             employee.setPosition(position);
             employee.setNIC(nicText.getText());
             employee.setUsername(unameText.getText());
-            if(Arrays.equals(passText.getPassword(), conPassText.getPassword())){
+            //if(Arrays.equals(passText.getPassword(), conPassText.getPassword())){
                 employee.setPassword(new String(passText.getPassword()));
                 try {
                     db.addEmployee(employee);
@@ -759,13 +772,14 @@ public class ManagerWindow extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
                 } 
-            }else{
-                JOptionPane.showMessageDialog(posComboBox, "password invalid..!!");
+            /*}else{
+                JOptionPane.showMessageDialog(this, "password invalid..!!");
                 passText.setText(null);
                 conPassText.setText(null);
             }
-        }else{
+        /*}else{
             JOptionPane.showMessageDialog(this, "Enter the position of employee");
+        }*/
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -844,6 +858,111 @@ public class ManagerWindow extends javax.swing.JFrame {
         eidText1.setText(null);
     }//GEN-LAST:event_btnCancelUpdateActionPerformed
 
+    private void nicTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nicTextKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (nicText.getText().length()<9 && !Character.isDigit(c)){
+            evt.consume();
+            return;
+        }
+        if (nicText.getText().length()==9 && !(c=='v' || c=='V' || c=='x' || c=='X')){
+            evt.consume();
+            return;
+        }
+        if (nicText.getText().length()==10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_nicTextKeyTyped
+
+    private void nicText1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nicText1KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (nicText1.getText().length()<9 && !Character.isDigit(c)){
+            evt.consume();
+            return;
+        }
+        if (nicText1.getText().length()==9 && !(c=='v' || c=='V' || c=='x' || c=='X')){
+            evt.consume();
+            return;
+        }
+        if (nicText1.getText().length()==10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_nicText1KeyTyped
+    
+    private boolean validateAddDetails(){
+        if(nameText.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Name cannot be empty..!!");
+            return false;
+        }
+        if(posComboBox.getSelectedItem()==null){
+            JOptionPane.showMessageDialog(this, "Position cannot be empty..!!");
+            return false;
+        }
+        if(nicText.getText().length()!=10){
+            JOptionPane.showMessageDialog(this, "Invalid NIC number..!!");
+            return false;
+        }
+        try {
+            if(DBOperation.getInstance().checkEmployeeNIC(nicText.getText())){
+                JOptionPane.showMessageDialog(this, "NIC number already exist..!!");
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(unameText.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Username cannot be empty..!!");
+            return false;
+        }
+        if(!(Arrays.equals(passText.getPassword(), conPassText.getPassword()))){
+            JOptionPane.showMessageDialog(this, "Password should be same in two fields..!!");
+            return false;
+        }
+        if(String.valueOf(passText.getPassword()).equals("")){
+            JOptionPane.showMessageDialog(this, "Password cannot be empty..!!");
+            return false;
+        }
+        return true;
+        
+    }
+    
+    private boolean validateUpdateDetails(){
+        if(nameText1.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Name cannot be empty..!!");
+            return false;
+        }
+        if(posComboBox1.getSelectedItem()==null){
+            JOptionPane.showMessageDialog(this, "Position cannot be empty..!!");
+            return false;
+        }
+        if(nicText1.getText().length()!=10){
+            JOptionPane.showMessageDialog(this, "Invalid NIC number..!!");
+            return false;
+        }
+        try {
+            if(DBOperation.getInstance().checkEmployeeNIC(nicText1.getText())){
+                JOptionPane.showMessageDialog(this, "NIC number already exist..!!");
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(unameText1.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Username cannot be empty..!!");
+            return false;
+        }
+        if(!(Arrays.equals(passText1.getPassword(), conPassText1.getPassword()))){
+            JOptionPane.showMessageDialog(this, "Password should be same in two fields..!!");
+            return false;
+        }
+        if(String.valueOf(passText1.getPassword()).equals("")){
+            JOptionPane.showMessageDialog(this, "Password cannot be empty..!!");
+            return false;
+        }
+        return true;
+        
+    }
     /**
      * @param args the command line arguments
      */
