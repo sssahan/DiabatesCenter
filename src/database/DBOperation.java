@@ -446,13 +446,43 @@ public class DBOperation {
     
     public boolean checkEmployeeNIC(String nic) throws SQLException{
         setConenction();             
-            pst = con.prepareStatement("SELECT * FROM Employee WHERE NIC=?");
-            pst.setString(1, nic);
-            resultSet = pst.executeQuery();
-            while(resultSet.next()){     
+        pst = con.prepareStatement("SELECT * FROM Employee WHERE NIC=?");
+        pst.setString(1, nic);
+        resultSet = pst.executeQuery();
+        while(resultSet.next()){ 
+            if(resultSet.getString(1).equals(nic)){
                 return true;
-            }    
-            con.close(); 
+            }
+            
+        }    
+        con.close(); 
         return false;
     }
+    public boolean checkUsername(String username) throws SQLException{
+        setConenction();             
+        pst = con.prepareStatement("SELECT * FROM Employee WHERE username=?");
+        pst.setString(1, username);
+        resultSet = pst.executeQuery();
+        while(resultSet.next()){     
+            if(resultSet.getString(1).equals(username)){
+                return true;
+            }
+        }    
+        con.close(); 
+        return false;
+     }
+    
+    public boolean checkPassword(String pwd) throws SQLException{
+        setConenction();             
+        pst = con.prepareStatement("SELECT * FROM Employee WHERE password=?");
+        pst.setString(1, pwd);
+        resultSet = pst.executeQuery();
+        while(resultSet.next()){     
+            if(resultSet.getString(1).equals(pwd)){
+                return true;
+            }
+        }    
+        con.close(); 
+        return false;
+     }
 }
