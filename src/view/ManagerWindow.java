@@ -6,6 +6,7 @@
 package view;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import database.CryptWithMD5;
 import database.DBOperation;
 import domain.Doctor;
 import domain.Employee;
@@ -13,6 +14,7 @@ import domain.LabTechnician;
 import domain.Manager;
 import domain.MedicalAssistant;
 import domain.Receptionist;
+import java.security.cert.CRLSelector;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -108,6 +110,7 @@ public class ManagerWindow extends javax.swing.JFrame {
         btnCancelUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Manager Window");
         setResizable(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
@@ -716,7 +719,8 @@ public class ManagerWindow extends javax.swing.JFrame {
             employee.setName(nameText1.getText());
             employee.setPosition(position);
             employee.setUsername(unameText1.getText());
-            employee.setPassword(new String(passText1.getPassword()));
+            String pass=CryptWithMD5.cryptWithMD5(new String(passText1.getPassword()));
+            employee.setPassword(pass);
             try {
                 db.updateEmployee(employee);
                 passText1.setText(null);
@@ -770,7 +774,8 @@ public class ManagerWindow extends javax.swing.JFrame {
             employee.setPosition(position);
             employee.setNIC(nicText.getText());
             employee.setUsername(unameText.getText());
-            employee.setPassword(new String(passText.getPassword()));
+            String pass=CryptWithMD5.cryptWithMD5(new String(passText.getPassword()));
+            employee.setPassword(pass);
             try {
                 db.addEmployee(employee);
                 lastEID=db.getLastEID();

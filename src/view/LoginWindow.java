@@ -5,6 +5,7 @@
  */
 package view;
 
+import database.CryptWithMD5;
 import database.DBOperation;
 import domain.Doctor;
 import domain.LabTechnician;
@@ -167,7 +168,7 @@ public class LoginWindow extends javax.swing.JFrame {
         String user,pwd;
         DBOperation db=DBOperation.getInstance();
         user=String.valueOf(txtUser.getText());
-        pwd=String.valueOf(txtPassword.getPassword());
+        pwd=CryptWithMD5.cryptWithMD5(String.valueOf(txtPassword.getPassword()));
         try {
             if(db.isAdmin(user, pwd)){
                 ManagerWindow mw=new  ManagerWindow();
