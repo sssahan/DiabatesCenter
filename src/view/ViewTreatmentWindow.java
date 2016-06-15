@@ -58,11 +58,12 @@ public class ViewTreatmentWindow extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Previous Treatments");
         setResizable(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Diabetes Center");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/cloud-logo-mini.jpg"))); // NOI18N
         jLabel3.setPreferredSize(new java.awt.Dimension(603, 228));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
