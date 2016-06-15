@@ -297,7 +297,7 @@ public class DBOperation {
     public ArrayList<String> getResultList(String pid,String test) throws SQLException{
         ArrayList<String> resultList=new ArrayList();
         setConenction();
-        pst=con.prepareStatement("SELECT result FROM Test WHERE PID=? AND test_type=?");
+        pst=con.prepareStatement("SELECT result FROM Test WHERE PID=? AND test_type=? ORDER BY date DESC LIMIT 10");
         pst.setString(1, pid);
         pst.setString(2, test);
         resultSet=pst.executeQuery();
@@ -311,7 +311,7 @@ public class DBOperation {
     public ArrayList<String> getDateList(String pid,String test) throws SQLException{
         ArrayList<String> dateList=new ArrayList();
         setConenction();
-        pst=con.prepareStatement("SELECT date FROM Test WHERE PID=? AND test_type=?");
+        pst=con.prepareStatement("SELECT date FROM Test WHERE PID=? AND test_type=? ORDER BY date DESC LIMIT 10");
         pst.setString(1, pid);
         pst.setString(2, test);
         resultSet=pst.executeQuery();

@@ -269,7 +269,7 @@ public class TechnicianWindow extends javax.swing.JFrame {
                 testReport.setTestID(db.getLastTestID()+1);
                 testReport.setEmployeeID(Integer.valueOf(tecIDtext.getText()));//have to chech eid in database
                 if(db.isValidPatient(pid)){
-                    if(resultText.getText().equals("") || !(resultText.getText().matches("\\d{3}")) ){
+                    if(!(resultText.getText().equals("")) || !(resultText.getText().matches("\\d{3}")) ){
                         testReport.setPatientID(pid);//have to check pid in database
                         testReport.setResult(resultText.getText());
                         Date testDate=Help.getDate(Integer.valueOf(yearText.getText()), Integer.valueOf(monthText.getText()), Integer.valueOf(dayText.getText()));
@@ -282,6 +282,7 @@ public class TechnicianWindow extends javax.swing.JFrame {
                         }
                     }else{
                         JOptionPane.showMessageDialog(this, "Invalid result...!!!");
+                        PIDtext.setText(null);
                     }
                     
                     PIDtext.setText(null);
@@ -289,6 +290,7 @@ public class TechnicianWindow extends javax.swing.JFrame {
                     yearText.setText(null);
                     monthText.setText(null);
                     dayText.setText(null);
+                    testComboBox.setSelectedItem(null);
                 }else{
                     JOptionPane.showMessageDialog(this, "Invalid patient...!!!");
                 }

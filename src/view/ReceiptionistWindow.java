@@ -578,7 +578,7 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
                 txtBlood.setText(patient.getBloodGroup());
                 txtGender.setText(patient.getGender());
                 txtAddress.setText(patient.getAddress());
-                txtPatientContactNo1.setText(patient.getPhoneNum());
+                txtPatientContactNo1.setText("0"+patient.getPhoneNum());
             }else{
                 JOptionPane.showMessageDialog(this, "Invalid patient...!!!");
                 txtPID1.setText(null);
@@ -644,7 +644,7 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
                     patient.setGender(String.valueOf(cmbxGender.getSelectedItem()));
                     patient.setDate(date);
                     patient.setBloodGroup(String.valueOf(cmbxBloodGroup.getSelectedItem()));
-                    patient.setAddress(txtAddress1.getText()+ txtAddress2.getText()+txtAddress3.getText());
+                    patient.setAddress(txtAddress1.getText()+","+ txtAddress2.getText()+","+txtAddress3.getText());
                     patient.setPhoneNum(txtPatientContactNo.getText());
 
                     db.addPatient(patient);
@@ -659,6 +659,8 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
                     txtAddress2.setText(null);
                     txtAddress3.setText(null);
                     txtPatientContactNo.setText(null);
+                    cmbxBloodGroup.setSelectedItem(null);
+                    cmbxGender.setSelectedItem(null);
                 }
                 /*}else{
                     JOptionPane.showMessageDialog(this, "invalid phone number..!!");
