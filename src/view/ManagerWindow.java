@@ -927,6 +927,10 @@ public class ManagerWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Username cannot be empty..!!");
             return false;
         }
+        if(passText.getPassword().length>5){
+            JOptionPane.showMessageDialog(this, "Password should be less or equal to 5 characters..!!");
+            return false;
+        }
         if(!(Arrays.equals(passText.getPassword(), conPassText.getPassword()))){
             JOptionPane.showMessageDialog(this, "Password should be same in two fields..!!");
             return false;
@@ -962,6 +966,10 @@ public class ManagerWindow extends javax.swing.JFrame {
         }
         if(unameText1.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Username cannot be empty..!!");
+            return false;
+        }
+        if(passText1.getPassword().length>5){
+            JOptionPane.showMessageDialog(this, "Password should be less or equal to 5 characters..!!");
             return false;
         }
         if(!(Arrays.equals(passText1.getPassword(), conPassText1.getPassword()))){

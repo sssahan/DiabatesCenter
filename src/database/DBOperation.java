@@ -31,9 +31,10 @@ public class DBOperation {
     private Connection con = null;
     private PreparedStatement pst = null;
     private ResultSet resultSet = null;
-    private final String url = "jdbc:mysql://localhost:3306/diabetes_center";
-    private final String user = "root";
+    private final String url = "jdbc:mysql://192.168.173.1:3306/diabetes_center";
+    private final String user = "sahan";
     private final String password = "sahan";
+    public static boolean conError=false;
     private DBOperation(){
         
     }
@@ -46,15 +47,20 @@ public class DBOperation {
         }
         return dbo;
     }
-    public void setConenction() throws SQLException{
+    public boolean setConenction() throws SQLException{
         boolean reachable = false;
         try {            
             Class.forName("com.mysql.jdbc.Driver").newInstance();            
-            con = DriverManager.getConnection(url, user, password);           
-            reachable = con.isValid(30);           
-            
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ex) {
-           
+            con = DriverManager.getConnection(url, user, password);            
+            conError=false;
+            reachable = con.isValid(30);            
+            return true;
+        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException ex) {            
+            conError=true;
+            return false;
+        }catch(Exception ex){
+            conError=true;
+            return false;
         }
     }
     public void closeConnection() throws SQLException{
@@ -203,7 +209,8 @@ public class DBOperation {
     
     public boolean isAdmin(String user, String pwd){
          try {
-            setConenction();
+            if(!setConenction())
+                return false;
             pst = con.prepareStatement("SELECT * FROM Employee WHERE EID = 1 AND username = ? AND password = ?");   
             pst.setString(1,user);
             pst.setString(2,pwd);

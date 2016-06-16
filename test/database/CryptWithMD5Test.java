@@ -43,12 +43,10 @@ public class CryptWithMD5Test {
     @Test
     public void testCryptWithMD5() {
         System.out.println("cryptWithMD5");
-        String pass = "m000";
+        String pass = "m0001";
         String expResult = "bf3726ba2640ac2e99e1f41c7ad061";
         String result = CryptWithMD5.cryptWithMD5(pass);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
     }
     
 }

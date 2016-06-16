@@ -170,7 +170,11 @@ public class LoginWindow extends javax.swing.JFrame {
         user=String.valueOf(txtUser.getText());
         pwd=CryptWithMD5.cryptWithMD5(String.valueOf(txtPassword.getPassword()));
         try {
-            if(db.isAdmin(user, pwd)){
+            
+            boolean result = db.isAdmin(user, pwd);
+            if(DBOperation.conError){
+                JOptionPane.showMessageDialog(this, "Connection Error..!!\nCheck your connection.");
+            }else if(result){
                 ManagerWindow mw=new  ManagerWindow();
                 mw.setLocationRelativeTo(null);
                 mw.setVisible(true);
@@ -206,7 +210,10 @@ public class LoginWindow extends javax.swing.JFrame {
                 txtUser.setText(null);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);
+            if(DBOperation.conError){
+                JOptionPane.showMessageDialog(this, "Connection Error.\nCheck your connection.");
+            }
         }
         
     }//GEN-LAST:event_loginButtonActionPerformed
