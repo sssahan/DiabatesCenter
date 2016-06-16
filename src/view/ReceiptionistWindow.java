@@ -106,6 +106,11 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Receptionist Window");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 74));
 
@@ -724,6 +729,13 @@ public class ReceiptionistWindow extends javax.swing.JFrame {
             txtPatientContactNo.setText(null);
         }*/
     }//GEN-LAST:event_btnAddPatientActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        LoginWindow lw=new LoginWindow();
+        lw.setLocationRelativeTo(null);
+        lw.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
     private boolean validDetails(){
         if(txtFirstName.getText().equals("")){
             JOptionPane.showMessageDialog(this, "First name cannot be empty..!!");

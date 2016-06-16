@@ -178,6 +178,7 @@ public class LoginWindow extends javax.swing.JFrame {
                 ManagerWindow mw=new  ManagerWindow();
                 mw.setLocationRelativeTo(null);
                 mw.setVisible(true);
+                this.dispose();
             }else if(db.isValidEmployee(user, pwd)){
                 //display ideal window to employee
                 String position=db.getPosition(user, pwd);
@@ -187,21 +188,25 @@ public class LoginWindow extends javax.swing.JFrame {
                         DoctorWindow dw=new DoctorWindow();
                         dw.setLocationRelativeTo(null);
                         dw.setVisible(true);
+                        this.dispose();
                         break;
                     case "Receptionist":
                         ReceiptionistWindow rw=new ReceiptionistWindow();
                         rw.setLocationRelativeTo(null);
                         rw.setVisible(true);
+                        this.dispose();
                         break;
                     case "Medical Assistant":
                         AssistantWindow aw=new AssistantWindow(eid);
                         aw.setLocationRelativeTo(null);
                         aw.setVisible(true);
+                        this.dispose();
                         break;
                     case "Lab Technician":
                         TechnicianWindow tw=new TechnicianWindow(eid);
                         tw.setLocationRelativeTo(null);
                         tw.setVisible(true);
+                        this.dispose();
                         break;
                 }
             }else{

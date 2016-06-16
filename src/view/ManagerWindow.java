@@ -112,6 +112,11 @@ public class ManagerWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manager Window");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -687,6 +692,8 @@ public class ManagerWindow extends javax.swing.JFrame {
                 eidText.setText(null);
             } catch (SQLException ex) {
                 Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
+            } catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Employee is empty..!!!");
             }
         }
     }//GEN-LAST:event_btnRemoveActionPerformed
@@ -901,6 +908,13 @@ public class ManagerWindow extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_nicText1KeyTyped
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        LoginWindow lw=new LoginWindow();
+        lw.setLocationRelativeTo(null);
+        lw.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
     
     private boolean validateAddDetails(){
         if(nameText.getText().equals("")){
