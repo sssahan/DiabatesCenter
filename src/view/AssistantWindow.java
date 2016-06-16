@@ -346,13 +346,26 @@ public class AssistantWindow extends javax.swing.JFrame {
                 dosage=String.valueOf(medicineTable.getValueAt(i, 1));
                 
                 medicine.addMedicine(med);
-                System.out.println(med);
                 medicine.addDosage(dosage);
-                System.out.println(dosage);
                 
                 
             }
             db.addMedicineReport(medicine);
+            rowButton.setEnabled(true);
+            txtRow.setText(null);
+            txtRow.setEditable(true);
+
+            while(loop>0){
+                int i=0;
+                model.removeRow(i);
+                i++;
+                loop--;
+            }
+            textPID.setText(null);
+            yearText.setText(null);
+            monthText.setText(null);
+            dayText.setText(null);
+            detailsTxt.setText(null);
             
         } catch (SQLException ex) {
             Logger.getLogger(AssistantWindow.class.getName()).log(Level.SEVERE, null, ex);
@@ -364,7 +377,6 @@ public class AssistantWindow extends javax.swing.JFrame {
     private void medicineTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_medicineTableKeyReleased
         // TODO add your handling code here:
         int num=evt.getKeyCode();
-        System.out.println("Enter num:"+ num);
         if((num==110 || evt.isActionKey()|| num==10)){
             cellEditor=(DefaultCellEditor)medicineTable.getCellEditor(medicineTable.getSelectedRow(),medicineTable.getSelectedColumn());
             ((JTextField)cellEditor.getComponent()).setText(null);
