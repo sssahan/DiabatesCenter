@@ -195,7 +195,7 @@
               <Color blue="ff" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="Tecnician ID :"/>
+            <Property name="text" type="java.lang.String" value="Technician ID :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
