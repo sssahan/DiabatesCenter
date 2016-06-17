@@ -5,7 +5,7 @@
  */
 package view;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+//import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import database.CryptWithMD5;
 import database.DBOperation;
 import domain.Doctor;
@@ -738,11 +738,9 @@ public class ManagerWindow extends javax.swing.JFrame {
                 posComboBox1.setSelectedItem(null);
                 nameText1.setText(null);
                 eidText1.setText(null);
-            } catch (MySQLIntegrityConstraintViolationException ex) {
+            } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Username already exist..!!");
                 unameText1.setText(null);
-            } catch (SQLException ex) {
-                Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         }
@@ -793,11 +791,9 @@ public class ManagerWindow extends javax.swing.JFrame {
                 passText.setText(null);
                 conPassText.setText(null);
                 posComboBox.setSelectedItem(null);
-            }catch (MySQLIntegrityConstraintViolationException ex) {
+            }catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Username already exist..!!");
                 unameText.setText(null);
-            }catch (SQLException ex) {
-                Logger.getLogger(ManagerWindow.class.getName()).log(Level.SEVERE, null, ex);
             } 
         }
     }//GEN-LAST:event_btnAddActionPerformed

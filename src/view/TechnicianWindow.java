@@ -305,7 +305,7 @@ public class TechnicianWindow extends javax.swing.JFrame {
                 //Logger.getLogger(TechnicianWindow.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(this, "Invalid date");
             } catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(this, "Fill all the fields");
+                JOptionPane.showMessageDialog(this, "Fill all the fields correctly");
             } 
         }
         
